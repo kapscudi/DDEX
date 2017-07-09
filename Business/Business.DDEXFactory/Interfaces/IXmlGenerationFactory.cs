@@ -10,5 +10,6 @@ namespace Business.DDEXFactory.Interfaces
     {
         IXmlGenerator GetGenerator();
         IXmlGenerationForm GetGenerationFormAudioSingle();
+        IXmlGenerationForm GetGenerationFormAudioAlbumMusicOnly();
     }
 }

@@ -42,7 +42,15 @@ namespace DDEX.Forms
                 }
             }
         }
+        public static string Validate(string path)
+        {
+            IXmlGenerationFactory Factory = new Generation.ERN_382.ERN_382GenerationFactory();
+            IXmlGenerator gen = Factory.GetGenerator();
+            string msg = "";
+            bool isValid = gen.IsValid(path, out msg);
 
+            return msg;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             using (var dlg = new OpenFileDialog())

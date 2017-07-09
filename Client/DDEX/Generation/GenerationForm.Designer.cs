@@ -37,16 +37,18 @@
             // 
             this.panel1.Controls.Add(this.btnGenerate);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 335);
+            this.panel1.Location = new System.Drawing.Point(0, 415);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(627, 58);
+            this.panel1.Size = new System.Drawing.Size(836, 71);
             this.panel1.TabIndex = 1;
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(262, 3);
+            this.btnGenerate.Location = new System.Drawing.Point(349, 4);
+            this.btnGenerate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(92, 52);
+            this.btnGenerate.Size = new System.Drawing.Size(123, 64);
             this.btnGenerate.TabIndex = 0;
             this.btnGenerate.Text = "Generate XML";
             this.btnGenerate.UseVisualStyleBackColor = true;
@@ -54,9 +56,10 @@
             // 
             // GenerationForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(627, 415);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.ClientSize = new System.Drawing.Size(836, 511);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "GenerationForm";
             this.Controls.SetChildIndex(this.panel1, 0);
             this.panel1.ResumeLayout(false);
@@ -66,8 +69,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
         public System.Windows.Forms.Button btnGenerate;
+        protected System.Windows.Forms.Panel panel1;
     }
 }

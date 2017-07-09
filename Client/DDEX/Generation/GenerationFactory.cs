@@ -5,6 +5,6 @@ namespace DDEX.Generation
     {
         public abstract IXmlGenerator GetGenerator();
         public abstract IXmlGenerationForm GetGenerationFormAudioSingle();
-        
+        public abstract IXmlGenerationForm GetGenerationFormAudioAlbumMusicOnly();
     }
 }

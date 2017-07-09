@@ -18,5 +18,11 @@ namespace DDEX.Generation.ERN_382
         {
             return new ERN_382Generator(this);
         }
+
+        public override IXmlGenerationForm GetGenerationFormAudioAlbumMusicOnly()
+        {
+            return new ERN_382GenerationFormAudioAlbumMusicOnly(this);
+        }
+
     }
 }

@@ -68,6 +68,12 @@
     <Compile Include="Forms\ValidatorForm.Designer.cs">
       <DependentUpon>ValidatorForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generation\ERN_382\ERN_382GenerationFormAudioAlbumMusicOnly.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generation\ERN_382\ERN_382GenerationFormAudioAlbumMusicOnly.Designer.cs">
+      <DependentUpon>ERN_382GenerationFormAudioAlbumMusicOnly.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generation\ERN_382\ERN_382GenerationFormAudioSingle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +100,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\ValidatorForm.resx">
       <DependentUpon>ValidatorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generation\ERN_382\ERN_382GenerationFormAudioAlbumMusicOnly.resx">
+      <DependentUpon>ERN_382GenerationFormAudioAlbumMusicOnly.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generation\ERN_382\ERN_382GenerationFormAudioSingle.resx">
       <DependentUpon>ERN_382GenerationFormAudioSingle.cs</DependentUpon>

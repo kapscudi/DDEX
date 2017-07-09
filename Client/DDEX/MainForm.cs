@@ -32,6 +32,12 @@ namespace DDEX
                 frm.MdiParent = this;
                 frm.Show();
             }
+            else if(sender == albumToolStripMenuItem)
+            {
+                var frm = (Form)Factory.GetGenerationFormAudioAlbumMusicOnly();
+                frm.MdiParent = this;
+                frm.Show();
+            }
         }
 
         private void toolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,27 +54,30 @@ namespace DDEX
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                using (var frm = new Generation.ERN_382.ERN_382GenerationFormAudioSingle())
-                {
-                    IXmlObject obj = frm.GetXmlObject();
-                    IXmlGenerator gen = Factory.GetGenerator();
-                    string fileName = @"C:\temp\ddex.xml";
+            menuItem_Click(albumToolStripMenuItem, new EventArgs());
+
+
+            //if (System.Diagnostics.Debugger.IsAttached)
+            //{
+            //    using (var frm = new Generation.ERN_382.ERN_382GenerationFormAudioSingle())
+            //    {
+            //        IXmlObject obj = frm.GetXmlObject();
+            //        IXmlGenerator gen = Factory.GetGenerator();
+            //        string fileName = @"C:\temp\ddex.xml";
 
 
 
-                    string value = System.IO.File.ReadAllText(@"D:\BitBucket\DDEX\Resources\Business Profiles Samples\LiveCycle_InitialWorldwideDeal.xml");
-                    //string value = System.IO.File.ReadAllText(@"D:\BitBucket\DDEX\Resources\Release Profiles Samples\Profile_AudioSingle.xml");
-                    var obj2 = gen.DeserializeNewReleaseMessage(value);
-                    var str = gen.SerializeNewReleaseMessage(obj2);
-                    System.IO.File.WriteAllText(fileName, str);
+            //        string value = System.IO.File.ReadAllText(@"C:\GitHub\DDEX\Resources\Business Profiles Samples\LiveCycle_InitialWorldwideDeal.xml");
+            //        //string value = System.IO.File.ReadAllText(@"D:\BitBucket\DDEX\Resources\Release Profiles Samples\Profile_AudioSingle.xml");
+            //        var obj2 = gen.DeserializeNewReleaseMessage(value);
+            //        var str = gen.SerializeNewReleaseMessage(obj2);
+            //        System.IO.File.WriteAllText(fileName, str);
 
-                    string msg = "";
-                    //fileName = @"D:\BitBucket\DDEX\Resources\Release Profiles Samples\Profile_AudioSingle.xml";
-                    bool isValid = gen.IsValid(fileName, out msg);
-                }
-            }
+            //        string msg = "";
+            //        //fileName = @"D:\BitBucket\DDEX\Resources\Release Profiles Samples\Profile_AudioSingle.xml";
+            //        bool isValid = gen.IsValid(fileName, out msg);
+            //    }
+            //}
         }
 
         private void validatorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -77,7 +86,7 @@ namespace DDEX
             frm.MdiParent = this;
             frm.Show();
         }
-
+        
     }
 }
     /*

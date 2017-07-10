@@ -40,15 +40,18 @@ namespace DDEX.Generation
             });
 
             var obj = GetXmlObject();
-            IXmlGenerator gen = Factory.GetGenerator();
-            string fileName = @"C:\temp\ddex.xml";
-            var str = gen.SerializeNewReleaseMessage(obj);
-            System.IO.File.WriteAllText(fileName, str);
 
-            //Helpers.FilesHelper.ExecuteFile(fileName);
-            string msg = "";
-            bool isValid = gen.IsValid(fileName, out msg);
+            if (obj != null)
+            {
+                IXmlGenerator gen = Factory.GetGenerator();
+                string fileName = @"C:\temp\ddex.xml";
+                var str = gen.SerializeNewReleaseMessage(obj);
+                System.IO.File.WriteAllText(fileName, str);
 
+                //Helpers.FilesHelper.ExecuteFile(fileName);
+                string msg = "";
+                bool isValid = gen.IsValid(fileName, out msg);
+            }
         }
 
         public virtual IXmlObject GetXmlObject()

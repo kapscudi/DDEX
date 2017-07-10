@@ -59,7 +59,6 @@
             // btnGenerate
             // 
             this.btnGenerate.Location = new System.Drawing.Point(169, 4);
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // panel1
             // 

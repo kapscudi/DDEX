@@ -159,7 +159,6 @@ namespace DDEX.Generation.ERN_382
 
             return ret;
         }
-
         private NewReleaseMessage XmlObject { get; set; }
         private void btnLoadXml_Click(object sender, EventArgs e)
         {
@@ -218,69 +217,98 @@ namespace DDEX.Generation.ERN_382
                 }
             }
         }
-        private void BindToObject()
+        private static NewReleaseMessage BindToObject(
+            NewReleaseMessage XmlObject,
+            string messageID, 
+            string senderPartyID,
+            string senderPartyName,
+            string recipientPartyID,
+            string recipientPartyName,
+            DateTime? messageCreatedDateTime
+        )
         {
-            if (XmlObject != null)
+            if (XmlObject == null)
             {
-                XmlObject.UpdateIndicator = UpdateIndicator.OriginalMessage;
-                if (XmlObject.MessageHeader != null)
+                XmlObject = new NewReleaseMessage()
                 {
-                    XmlObject.MessageHeader.MessageId = txtMessageID.Text;
-                    XmlObject.MessageHeader.MessageThreadId = txtMessageID.Text;
-
-                    if (XmlObject.MessageHeader.MessageSender.PartyId == null)
-                    {
-                        PartyId[] senderIDs = { new PartyId() };
-                        XmlObject.MessageHeader.MessageSender.PartyId = senderIDs;
-                    }
-                    XmlObject.MessageHeader.MessageSender.PartyId[0].Value = txtMessageSender_PartyID.Text;
-                
-                    if (XmlObject.MessageHeader.MessageSender.PartyName == null)
-                    {
-                        XmlObject.MessageHeader.MessageSender.PartyName = new PartyName();
-                    }
-                    if (XmlObject.MessageHeader.MessageSender.PartyName.FullName == null)
-                    {
-                        XmlObject.MessageHeader.MessageSender.PartyName.FullName = new Business.DDEXFactory.Schemas.ERN_382.Name();
-                    }
-                    XmlObject.MessageHeader.MessageSender.PartyName.FullName.Value = txtMessageSender_PartyName.Text;
-
-                    if (XmlObject.MessageHeader.MessageRecipient == null)
-                    {
-                        var o = new MessagingParty();
-                        MessagingParty[] messageRecipient = { o };
-                        XmlObject.MessageHeader.MessageRecipient = messageRecipient;
-                    }
-
-                    XmlObject.MessageHeader.MessageRecipient[0].PartyId[0].Value = txtMessageRecipient_PartyID.Text;                
-
-                    if (XmlObject.MessageHeader.MessageRecipient[0].PartyName == null)
-                    {
-                        XmlObject.MessageHeader.MessageRecipient[0].PartyName = new PartyName();
-                    }
-                    if (XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName == null)
-                    {
-                        XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName = new Business.DDEXFactory.Schemas.ERN_382.Name();
-                    }
-
-                    XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName.Value = txtMessageRecipient_PartyName.Text;
-                    XmlObject.MessageHeader.MessageCreatedDateTime = dpMessageCreatedDateTime.Value;
-                    XmlObject.MessageHeader.MessageCreatedDateTime = new DateTime(dpMessageCreatedDateTime.Value.Ticks, DateTimeKind.Local);
-                    
-                }
+                    ReleaseProfileVersionId = "CommonReleaseTypesTypes/13/AudioAlbumMusicOnly",
+                    LanguageAndScriptCode = "en",
+                    MessageSchemaVersionId = "ern/382",
+                    IsBackfill = false,
+                    IsBackfillSpecified = true
+                };
             }
+            XmlObject.UpdateIndicator = UpdateIndicator.OriginalMessage;
+            if (XmlObject.MessageHeader == null)
+            {
+                XmlObject.MessageHeader = new MessageHeader();
+            }
+
+            XmlObject.MessageHeader.MessageId = messageID;
+            XmlObject.MessageHeader.MessageThreadId = messageID;
+            if (XmlObject.MessageHeader.MessageSender == null)
+            {
+                XmlObject.MessageHeader.MessageSender = new MessagingParty();
+            }
+            if (XmlObject.MessageHeader.MessageSender.PartyId == null)
+            {
+                PartyId[] senderIDs = { new PartyId() };
+                XmlObject.MessageHeader.MessageSender.PartyId = senderIDs;
+            }
+            XmlObject.MessageHeader.MessageSender.PartyId[0].Value = senderPartyID;
+                
+            if (XmlObject.MessageHeader.MessageSender.PartyName == null)
+            {
+                XmlObject.MessageHeader.MessageSender.PartyName = new PartyName();
+            }
+            if (XmlObject.MessageHeader.MessageSender.PartyName.FullName == null)
+            {
+                XmlObject.MessageHeader.MessageSender.PartyName.FullName = new Name();
+            }
+            XmlObject.MessageHeader.MessageSender.PartyName.FullName.Value = senderPartyName;
+
+            if (XmlObject.MessageHeader.MessageRecipient == null)
+            {
+                var o = new MessagingParty();
+                MessagingParty[] messageRecipient = { o };
+                XmlObject.MessageHeader.MessageRecipient = messageRecipient;
+            }
+            if (XmlObject.MessageHeader.MessageRecipient[0].PartyId == null)
+            {
+                PartyId[] recipientIDs = { new PartyId() };
+                XmlObject.MessageHeader.MessageRecipient[0].PartyId = recipientIDs;
+            }
+
+            XmlObject.MessageHeader.MessageRecipient[0].PartyId[0].Value = recipientPartyID;
+
+            if (XmlObject.MessageHeader.MessageRecipient[0].PartyName == null)
+            {
+                XmlObject.MessageHeader.MessageRecipient[0].PartyName = new PartyName();
+            }
+            if (XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName == null)
+            {
+                XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName = new Name();
+            }
+
+            XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName.Value = recipientPartyName;
+            XmlObject.MessageHeader.MessageCreatedDateTime = new DateTime(messageCreatedDateTime.Value.Ticks, DateTimeKind.Local);
+
+            return XmlObject;
         }
-        private bool ValidateXmlObject()
+
+        private bool ValidateXmlObject(out string message)
         {
             IXmlGenerator gen = Factory.GetGenerator();
-            var str = gen.SerializeNewReleaseMessage(XmlObject);
-            //string fileName = @"c:\temp\file.xml";
-            string fileName = System.IO.Path.GetTempFileName();
+            message = "";
+            bool isValid = false;
+            if (XmlObject != null)
+            { 
+                var str = gen.SerializeNewReleaseMessage(XmlObject);
+                string fileName = System.IO.Path.GetTempFileName();
 
-            System.IO.File.WriteAllText(fileName, str);
-            string msg = "";
-            bool isValid = gen.IsValid(fileName, out msg);
-            rtbOutput.Text = msg;
+                System.IO.File.WriteAllText(fileName, str);
+                isValid = gen.IsValid(fileName, out message);
+            }
 
             return isValid;
         }
@@ -295,18 +323,28 @@ namespace DDEX.Generation.ERN_382
         protected override void OnGenerateClicked(object sender, EventArgs e)
         {
             base.OnGenerateClicked(sender, e);
-            BindToObject();
-            bool isValid = ValidateXmlObject();
+            rtbOutput.Text = "";
+            BindToObject(
+                    XmlObject,
+                    (txtMessageID.Text.Trim() == "" ? null : txtMessageID.Text),
+                    (txtMessageSender_PartyID.Text.Trim() == "" ? null : txtMessageSender_PartyID.Text),
+                    (txtMessageSender_PartyName.Text.Trim() == "" ? null : txtMessageSender_PartyName.Text),
+                    (txtMessageRecipient_PartyID.Text.Trim() == "" ? null : txtMessageRecipient_PartyID.Text),
+                    (txtMessageRecipient_PartyName.Text.Trim() == "" ? null : txtMessageRecipient_PartyName.Text),
+                    dpMessageCreatedDateTime.Value
+                );
+            string msg = "";
+            bool isValid = ValidateXmlObject(out msg);
             if (isValid)
             {
                 WriteXml();
             }
+            else
+            {
+                rtbOutput.Text =  msg + "---\n" + rtbOutput.Text.ToString() + "\n";
+            }
         }
-        private void btnGenerate_Click(object sender, EventArgs e)
-        {
-            
-        }
-
+        
         private void ERN_382GenerationFormAudioAlbumMusicOnly_Load(object sender, EventArgs e)
         {
             lblPath.Text = "C:\\temp\\file.xml";

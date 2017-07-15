@@ -1,13 +1,9 @@
 ﻿using System.IO;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using Business.DDEXFactory;
-using Business.DDEXFactory.Interfaces;
+using Business.DDEXSchemaERN_382.Generation;
+using Business.DDEXSchemaERN_382;
 
 namespace DDEX.Forms
 {
@@ -17,17 +13,16 @@ namespace DDEX.Forms
         {
             InitializeComponent();
         }
-
-        public object Factory { get; private set; }
+        
+        public Binder Binder = new Binder();
 
         private void btnValidate_Click(object sender, EventArgs e)
         {
             if (File.Exists(txtPath.Text))
             {
-                IXmlGenerationFactory Factory = new Generation.ERN_382.ERN_382GenerationFactory();
-                IXmlGenerator gen = Factory.GetGenerator();
+                
                 string msg = "";
-                bool isValid = gen.IsValid(txtPath.Text, out msg);
+                bool isValid = Binder.IsFileValid(txtPath.Text, out msg);
                 if (isValid)
                 {
                     lblResult.Text = "... VALID ...";
@@ -41,15 +36,6 @@ namespace DDEX.Forms
                     richTextBox1.Text = msg;
                 }
             }
-        }
-        public static string Validate(string path)
-        {
-            IXmlGenerationFactory Factory = new Generation.ERN_382.ERN_382GenerationFactory();
-            IXmlGenerator gen = Factory.GetGenerator();
-            string msg = "";
-            bool isValid = gen.IsValid(path, out msg);
-
-            return msg;
         }
         private void button1_Click(object sender, EventArgs e)
         {

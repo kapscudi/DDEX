@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DDEXFactory.Schemas.ERN_382
+namespace ClassLibrary1
 {
-    public partial class NewReleaseMessage : Interfaces.IXmlObject
-    {   
+    public class Class1
+    {
     }
 }

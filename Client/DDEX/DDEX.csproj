@@ -74,22 +74,12 @@
     <Compile Include="Generation\ERN_382\ERN_382GenerationFormAudioAlbumMusicOnly.Designer.cs">
       <DependentUpon>ERN_382GenerationFormAudioAlbumMusicOnly.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generation\ERN_382\ERN_382GenerationFormAudioSingle.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Generation\ERN_382\ERN_382GenerationFormAudioSingle.Designer.cs">
-      <DependentUpon>ERN_382GenerationFormAudioSingle.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Generation\ERN_382\ERN_382GenerationFactory.cs" />
     <Compile Include="Generation\GenerationForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Generation\GenerationForm.Designer.cs">
       <DependentUpon>GenerationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generation\Generator.cs" />
-    <Compile Include="Generation\ERN_382\ERN_382Generator.cs" />
-    <Compile Include="Generation\GenerationFactory.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,9 +93,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generation\ERN_382\ERN_382GenerationFormAudioAlbumMusicOnly.resx">
       <DependentUpon>ERN_382GenerationFormAudioAlbumMusicOnly.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Generation\ERN_382\ERN_382GenerationFormAudioSingle.resx">
-      <DependentUpon>ERN_382GenerationFormAudioSingle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generation\GenerationForm.resx">
       <DependentUpon>GenerationForm.cs</DependentUpon>
@@ -121,6 +108,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -136,9 +124,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Business\Business.DDEXFactory\Business.DDEXFactory.csproj">
-      <Project>{0836e723-f040-4de5-ba80-c7eaedebd554}</Project>
-      <Name>Business.DDEXFactory</Name>
+    <ProjectReference Include="..\..\Business\Business.DDEXFactory.Interfaces\Business.DDEXFactory.Interfaces.csproj">
+      <Project>{457d7450-aaba-4905-9823-70c8b02791a9}</Project>
+      <Name>Business.DDEXFactory.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Business\Business.DDEXSchemaERN_382\Business.DDEXSchemaERN_382.csproj">
+      <Project>{1eb3dd03-2b02-4a94-bff4-9174a5d4aac9}</Project>
+      <Name>Business.DDEXSchemaERN_382</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Framework\Framework.UI\Framework.UI.csproj">
       <Project>{163ed8df-8390-4069-81f0-aadcc41fb1d5}</Project>
@@ -152,6 +144,16 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

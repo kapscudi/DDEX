@@ -49,8 +49,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1295, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(971, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -60,7 +59,7 @@
             this.newToolStripMenuItem,
             this.validatorToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // newToolStripMenuItem
@@ -69,27 +68,27 @@
             this.singleToolStripMenuItem,
             this.albumToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.newToolStripMenuItem.Text = "Ne&w";
             // 
             // singleToolStripMenuItem
             // 
             this.singleToolStripMenuItem.Name = "singleToolStripMenuItem";
-            this.singleToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.singleToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.singleToolStripMenuItem.Text = "&Single";
             this.singleToolStripMenuItem.Click += new System.EventHandler(this.menuItem_Click);
             // 
             // albumToolStripMenuItem
             // 
             this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
-            this.albumToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.albumToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.albumToolStripMenuItem.Text = "&Album";
             this.albumToolStripMenuItem.Click += new System.EventHandler(this.menuItem_Click);
             // 
             // validatorToolStripMenuItem
             // 
             this.validatorToolStripMenuItem.Name = "validatorToolStripMenuItem";
-            this.validatorToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.validatorToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
             this.validatorToolStripMenuItem.Text = "&Validator";
             this.validatorToolStripMenuItem.Click += new System.EventHandler(this.validatorToolStripMenuItem_Click);
             // 
@@ -98,10 +97,9 @@
             this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnXmlVersion});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 730);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 592);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
-            this.statusStrip1.Size = new System.Drawing.Size(1295, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(971, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -113,25 +111,25 @@
             this.tsBtnXmlVersion.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnXmlVersion.Image")));
             this.tsBtnXmlVersion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnXmlVersion.Name = "tsBtnXmlVersion";
-            this.tsBtnXmlVersion.Size = new System.Drawing.Size(163, 24);
+            this.tsBtnXmlVersion.Size = new System.Drawing.Size(130, 20);
             this.tsBtnXmlVersion.Text = "Xml Version ERN_382";
             // 
             // tsBtnXmlVersionERN_382
             // 
             this.tsBtnXmlVersionERN_382.Name = "tsBtnXmlVersionERN_382";
-            this.tsBtnXmlVersionERN_382.Size = new System.Drawing.Size(142, 26);
+            this.tsBtnXmlVersionERN_382.Size = new System.Drawing.Size(119, 22);
             this.tsBtnXmlVersionERN_382.Text = "ERN_382";
-            this.tsBtnXmlVersionERN_382.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.ClientSize = new System.Drawing.Size(1295, 756);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientSize = new System.Drawing.Size(971, 614);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.Controls.SetChildIndex(this.menuStrip1, 0);
             this.Controls.SetChildIndex(this.statusStrip1, 0);

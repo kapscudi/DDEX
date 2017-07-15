@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace Business.DDEXFactory.Interfaces
 {
-    public interface IXmlGenerationForm: IDisposable
+    public interface IXmlGenerationFactory
     {
-        IXmlObject GetXmlObject();
-        IXmlGenerationFactory Factory { get; }
+        IXmlGenerator GetGenerator();
     }
 }

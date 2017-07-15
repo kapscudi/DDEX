@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0836E723-F040-4DE5-BA80-C7EAEDEBD554}</ProjectGuid>
+    <ProjectGuid>{1EB3DD03-2B02-4A94-BFF4-9174A5D4AAC9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Business.DDEXFactory</RootNamespace>
-    <AssemblyName>Business.DDEXFactory</AssemblyName>
+    <RootNamespace>Business.DDEXSchemaERN_382</RootNamespace>
+    <AssemblyName>Business.DDEXSchemaERN_382</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,16 +22,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -46,21 +40,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Generation\GenerationFactory.cs" />
-    <Compile Include="Generation\Generator.cs" />
-    <Compile Include="Helpers\FilesHelper.cs" />
-    <Compile Include="Helpers\ReflectionHelper.cs" />
-    <Compile Include="Helpers\SerializationHelper.cs" />
+    <Compile Include="Binder.cs" />
+    <Compile Include="Entities\AudioAlbumModel.cs" />
+    <Compile Include="Entities\BindableModel.cs" />
+    <Compile Include="Entities\TrackModel.cs" />
+    <Compile Include="Generation\ERN_382GenerationFactory.cs" />
+    <Compile Include="Generation\ERN_382Generator.cs" />
+    <Compile Include="Interfaces\IBindableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <Compile Include="Schema\cs\NewReleaseMessage.cs" />
+    <Compile Include="Schema\cs\release-notification_avs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Business.DDEXFactory.Interfaces\Business.DDEXFactory.Interfaces.csproj">
       <Project>{457d7450-aaba-4905-9823-70c8b02791a9}</Project>
       <Name>Business.DDEXFactory.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Business.DDEXFactory\Business.DDEXFactory.csproj">
+      <Project>{0836e723-f040-4de5-ba80-c7eaedebd554}</Project>
+      <Name>Business.DDEXFactory</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Schema\xsd\avs.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Schema\xsd\GenerateClasses.bat">
+      <SubType>Designer</SubType>
+    </None>
+    <EmbeddedResource Include="Schema\xsd\release-notification.xsd">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

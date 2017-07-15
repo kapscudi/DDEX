@@ -5,8 +5,11 @@ using System.IO;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using Business.DDEXFactory.Generation;
+using Business.DDEXSchemaERN_382.Schema;
+using System.Reflection;
 
-namespace DDEX.Generation.ERN_382
+namespace Business.DDEXSchemaERN_382.Generation
 {
     public class ERN_382Generator : Generator
     {
@@ -15,31 +18,38 @@ namespace DDEX.Generation.ERN_382
             _Factory = factory;
         }
 
-        public override IXmlObject DeserializeNewReleaseMessage(string value)
+        public override IXmlObject DeserializeXmlObject(string value)
         {
             IXmlObject ret = null;
-            ret = (IXmlObject)Business.DDEXFactory.Helpers.SerializationHelper.Deserialize(typeof(Business.DDEXFactory.Schemas.ERN_382.NewReleaseMessage), value);
+            ret = (IXmlObject)SerializationHelper.Deserialize(typeof(NewReleaseMessage), value);
 
             return ret;
         }
 
-        public override bool IsValid(string fileName, out string outMessage)
+        private static Assembly _CurrentAssembly = Assembly.GetExecutingAssembly();
+        public static Assembly CurrentAssembly
+        {
+            get
+            {
+                return _CurrentAssembly;
+            }
+        }
+
+        public override bool IsValid(string value, out string outMessage)
         {
             bool ret = true;
-
-            string value = System.IO.File.ReadAllText(fileName);
-
+            
             XmlSchemaSet schemas = new XmlSchemaSet();
 
             string xsdEmbeddedResourceName = null;
             string xsdMarkup = null;
 
-            xsdEmbeddedResourceName = "Business.DDEXFactory.Schemas.ERN_382.xsd.release-notification.xsd";
-            xsdMarkup = ReflectionHelper.ReadEmbeddedResource(ReflectionHelper.CurrentAssembly, xsdEmbeddedResourceName);
+            xsdEmbeddedResourceName = "Business.DDEXSchemaERN_382.Schema.xsd.release-notification.xsd";
+            xsdMarkup = ReflectionHelper.ReadEmbeddedResource(ERN_382Generator.CurrentAssembly, xsdEmbeddedResourceName);
             schemas.Add("http://ddex.net/xml/ern/382", XmlReader.Create(new StringReader(xsdMarkup)));
 
-            xsdEmbeddedResourceName = "Business.DDEXFactory.Schemas.ERN_382.xsd.avs.xsd";
-            xsdMarkup = ReflectionHelper.ReadEmbeddedResource(ReflectionHelper.CurrentAssembly, xsdEmbeddedResourceName);
+            xsdEmbeddedResourceName = "Business.DDEXSchemaERN_382.Schema.xsd.avs.xsd";
+            xsdMarkup = ReflectionHelper.ReadEmbeddedResource(ERN_382Generator.CurrentAssembly, xsdEmbeddedResourceName);
             schemas.Add("http://ddex.net/xml/avs/avs", XmlReader.Create(new StringReader(xsdMarkup)));
 
             outMessage = "";

@@ -61,6 +61,7 @@
     <Compile Include="Forms\MRStatusForm.Designer.cs">
       <DependentUpon>MRStatusForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ComboBoxItem.cs" />
     <Compile Include="Helpers\CrossThreadingHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

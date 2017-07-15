@@ -1,4 +1,5 @@
-﻿using Business.DDEXFactory.Schemas.ERN_382;
+﻿using Framework.UI.Helpers;
+using Business.DDEXFactory.Schemas.ERN_382;
 using Business.DDEXFactory.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -214,6 +215,21 @@ namespace DDEX.Generation.ERN_382
                         txtMessageRecipient_PartyName.Text = XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName.Value;
                     }
                     dpMessageCreatedDateTime.Value = XmlObject.MessageHeader.MessageCreatedDateTime;
+
+                    var val = ((List<ComboBoxItem>)((BindingSource)cbUpdateIndicator.DataSource).DataSource).Find(x => (UpdateIndicator)x.Value == XmlObject.UpdateIndicator);
+                    for (int i = 0; i < cbUpdateIndicator.Items.Count; i++)
+                    {
+                        if (cbUpdateIndicator.Items[i] == val)
+                        {
+                            cbUpdateIndicator.SelectedIndex = i;
+                        }
+                    }
+
+                    txtEAN.Text = "";
+                    if (XmlObject.ReleaseList != null && XmlObject.ReleaseList.Release != null && XmlObject.ReleaseList.Release.Length > 0 && XmlObject.ReleaseList.Release[0].ReleaseId != null && XmlObject.ReleaseList.Release[0].ReleaseId.Length > 0)
+                    {
+                        txtEAN.Text = XmlObject.ReleaseList.Release[0].ReleaseId[0].ICPN.Value;
+                    }
                 }
             }
         }
@@ -224,7 +240,9 @@ namespace DDEX.Generation.ERN_382
             string senderPartyName,
             string recipientPartyID,
             string recipientPartyName,
-            DateTime? messageCreatedDateTime
+            DateTime? messageCreatedDateTime,
+            UpdateIndicator updateIndicator,
+            string EAN
         )
         {
             if (XmlObject == null)
@@ -293,6 +311,25 @@ namespace DDEX.Generation.ERN_382
             XmlObject.MessageHeader.MessageRecipient[0].PartyName.FullName.Value = recipientPartyName;
             XmlObject.MessageHeader.MessageCreatedDateTime = new DateTime(messageCreatedDateTime.Value.Ticks, DateTimeKind.Local);
 
+            XmlObject.UpdateIndicator = updateIndicator;
+            XmlObject.UpdateIndicatorSpecified = true;
+
+
+            if (XmlObject.ReleaseList == null)
+            {
+                XmlObject.ReleaseList = new ReleaseList();
+            }
+            if (XmlObject.ReleaseList.Release == null || XmlObject.ReleaseList.Release.Length == 0)
+            {
+                XmlObject.ReleaseList.Release = new Release[0];
+            }
+            if (XmlObject.ReleaseList.Release[0].ReleaseId == null || XmlObject.ReleaseList.Release[0].ReleaseId.Length == 0)
+            {
+                XmlObject.ReleaseList.Release[0].ReleaseId = new ReleaseId[0];
+            }
+            XmlObject.ReleaseList.Release[0].ReleaseId[0].ICPN.Value = EAN;
+
+
             return XmlObject;
         }
 
@@ -331,7 +368,9 @@ namespace DDEX.Generation.ERN_382
                     (txtMessageSender_PartyName.Text.Trim() == "" ? null : txtMessageSender_PartyName.Text),
                     (txtMessageRecipient_PartyID.Text.Trim() == "" ? null : txtMessageRecipient_PartyID.Text),
                     (txtMessageRecipient_PartyName.Text.Trim() == "" ? null : txtMessageRecipient_PartyName.Text),
-                    dpMessageCreatedDateTime.Value
+                    dpMessageCreatedDateTime.Value,
+                    (UpdateIndicator) ((ComboBoxItem) cbUpdateIndicator.SelectedValue).Value,
+                    txtEAN.Text
                 );
             string msg = "";
             bool isValid = ValidateXmlObject(out msg);
@@ -343,13 +382,36 @@ namespace DDEX.Generation.ERN_382
             {
                 rtbOutput.Text =  msg + "---\n" + rtbOutput.Text.ToString() + "\n";
             }
+
+            var srd = new SoundRecordingDetailsByTerritory();
+            
         }
         
         private void ERN_382GenerationFormAudioAlbumMusicOnly_Load(object sender, EventArgs e)
         {
+            InitBindings();
             lblPath.Text = "C:\\temp\\file.xml";
             LoadFile(lblPath.Text);
+
+            
         }
-        
+
+        private void InitBindings()
+        {
+            var bs = new BindingSource();
+
+            bs.DataSource = new List<ComboBoxItem>() { new ComboBoxItem() { Text = "OriginalMessage" , Value = UpdateIndicator.OriginalMessage }, new ComboBoxItem() { Text = "UpdateMessage", Value = UpdateIndicator.UpdateMessage } };
+            cbUpdateIndicator.DataSource = bs;
+            
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+
+            }
+
+        }
     }
 }

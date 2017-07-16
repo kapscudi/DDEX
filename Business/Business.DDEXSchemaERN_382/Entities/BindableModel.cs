@@ -35,6 +35,9 @@ namespace Business.DDEXSchemaERN_382.Entities
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public virtual bool IsValid { get { return true; } }
+        
         
     }
 }

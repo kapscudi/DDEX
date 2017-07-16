@@ -37,9 +37,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblStatusLeft});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 340);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 381);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(557, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(598, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -53,9 +53,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(557, 362);
+            this.ClientSize = new System.Drawing.Size(598, 403);
             this.Controls.Add(this.statusStrip1);
             this.Name = "MRStatusForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MRStatusForm";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

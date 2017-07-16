@@ -74,6 +74,12 @@
     <Compile Include="Generation\ERN_382\ERN_382GenerationFormAudioAlbumMusicOnly.Designer.cs">
       <DependentUpon>ERN_382GenerationFormAudioAlbumMusicOnly.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generation\ERN_382\ERN_382TrackReleaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generation\ERN_382\ERN_382TrackReleaseForm.Designer.cs">
+      <DependentUpon>ERN_382TrackReleaseForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generation\GenerationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,6 +99,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generation\ERN_382\ERN_382GenerationFormAudioAlbumMusicOnly.resx">
       <DependentUpon>ERN_382GenerationFormAudioAlbumMusicOnly.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generation\ERN_382\ERN_382TrackReleaseForm.resx">
+      <DependentUpon>ERN_382TrackReleaseForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generation\GenerationForm.resx">
       <DependentUpon>GenerationForm.cs</DependentUpon>

@@ -53,6 +53,7 @@ namespace Framework.UI.Controls
             pnlTitle.BackColor = titleColor;
             btnCollapse.Visible = expanded;
             btnExpand.Visible = !expanded;
+            btnAdd.Visible = addVisible;
         }
 
         private bool expanded = true;
@@ -66,6 +67,21 @@ namespace Framework.UI.Controls
             set
             {
                 expanded = value;
+                BindToControl();
+            }
+        }
+
+        private bool addVisible = false;
+        [DefaultValue(false)]
+        public bool AddVisible
+        {
+            get
+            {
+                return addVisible;
+            }
+            set
+            {
+                addVisible = value;
                 BindToControl();
             }
         }
@@ -92,7 +108,33 @@ namespace Framework.UI.Controls
             BindedControls.ForEach(x => x.Visible = e.Expanded);
             Changed?.Invoke(sender, e);
         }
+
         public List<Control> BindedControls { get; } = new List<Control>();
+
+        public delegate void ButtonClickedEventHandler(object sender, ActionButtonEventArgs e);
+        public event ButtonClickedEventHandler ButtonClicked;
+        public virtual void OnButtonClicked(object sender, ActionButtonEventArgs e)
+        {
+            ButtonClicked?.Invoke(sender, e);
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            OnButtonClicked(sender, new ActionButtonEventArgs() {  Action = eButtonAction.Add });
+        }
+
+        public enum eButtonAction
+        {
+            Add
+        }
+
+        public class ActionButtonEventArgs : EventArgs
+        {
+            public eButtonAction Action;
+        }
+
+        
+        
     }
 }
 

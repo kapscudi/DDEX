@@ -1,5 +1,7 @@
-﻿using Business.DDEXSchemaERN_382.Schema;
+﻿using Business.DDEXSchemaERN_382.BindingObjects;
+using Business.DDEXSchemaERN_382.Schema;
 using System;
+using System.ComponentModel;
 
 namespace Business.DDEXSchemaERN_382.Entities
 {
@@ -19,6 +21,7 @@ namespace Business.DDEXSchemaERN_382.Entities
         public DateTime MessageCreatedDateTime { get { return Get<DateTime>(); } set { Set(value); } }
         public UpdateIndicator UpdateIndicator { get { return Get<UpdateIndicator>(); } set { Set(value); } }
         public string MainReleaseReferenceTitle { get { return Get<string>(); } set { Set(value); } }
-        
+
+        public SortableBindingList<TrackModel> Tracks { get; set; } = new SortableBindingList<TrackModel>();
     }
 }

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.ComponentModel;
 using Business.DDEXSchemaERN_382.Entities;
 using Business.DDEXSchemaERN_382;
+using System.Linq;
 
 namespace DDEX.Generation.ERN_382
 {
@@ -16,7 +17,7 @@ namespace DDEX.Generation.ERN_382
             InitializeComponent();
         }
 
-        public AudioAlbumModel Model = new AudioAlbumModel() {  EAN = "Pero" };
+        public AudioAlbumModel Model = new AudioAlbumModel();
         public Binder Binder = new Binder();
 
         #region Comments
@@ -310,7 +311,6 @@ namespace DDEX.Generation.ERN_382
             }
         }
                 
-        
         protected override void OnGenerateClicked(object sender, EventArgs e)
         {
             base.OnGenerateClicked(sender, e);
@@ -336,20 +336,6 @@ namespace DDEX.Generation.ERN_382
             Model = (AudioAlbumModel) Binder.GetModelFromXmlObject(Binder.GetXmlObjectFromFile(lblPath.Text));
             InitBindings();
         }
-        private void bbTracks_Changed(object sender, Framework.UI.Controls.MRButtonBar.ButtonBarChangedEventArgs e)
-        {
-            if (e.ButtonType == Framework.UI.Controls.MRButtonBar.eButtonType.Add)
-            {
-                Tracks.Add(new TrackModel() { Ordinal = Tracks.Count + 1 });
-            }
-            else if (e.ButtonType == Framework.UI.Controls.MRButtonBar.eButtonType.Delete)
-            {
-                if (dgvSoundRecordingsAndReleases.SelectedRows != null && dgvSoundRecordingsAndReleases.SelectedRows.Count > 0)
-                {
-                    dgvSoundRecordingsAndReleases.Rows.Remove(dgvSoundRecordingsAndReleases.SelectedRows[0]);
-                }
-            }
-        }
 
         private void InitBindings()
         {
@@ -358,7 +344,9 @@ namespace DDEX.Generation.ERN_382
             tbMessageHeader.BindedControls.Add(pnlMessageHeader);
             tbTrackReleases.BindedControls.Add(pnlTrackReleases);
 
-            dgvSoundRecordingsAndReleases.DataSource = Tracks;
+            dgvSoundRecordingsAndReleases.AutoGenerateColumns = false;
+            dgvSoundRecordingsAndReleases.DataSource = Model.Tracks;
+            dgvSoundRecordingsAndReleases.ClearSelection();
 
             txtEAN.DataBindings.Add("Text", Model, "EAN");
             txtMessageID.DataBindings.Add("Text", Model, "MessageID");
@@ -382,8 +370,31 @@ namespace DDEX.Generation.ERN_382
             }
 
         }
-        public BindingList<TrackModel> Tracks { get; set; } = new BindingList<TrackModel>();
+        
+        private void tbTrackReleases_ButtonClicked(object sender, Framework.UI.Controls.MRTitleBar.ActionButtonEventArgs e)
+        {
+            if (e.Action == Framework.UI.Controls.MRTitleBar.eButtonAction.Add)
+            {
+                var track = new TrackModel() { Ordinal = 1 };
 
+                if (Model.Tracks.Any())
+                {
+                    track.Ordinal = Model.Tracks.Max(x => x.Ordinal) + 1;
+                }
+
+                using (var frm = new ERN_382TrackReleaseForm(track))
+                {
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        Model.Tracks.Add(track);
+                        dgvSoundRecordingsAndReleases.ClearSelection();
+                    }
+                }
+
+            }
+
+
+        }
     }
 
     

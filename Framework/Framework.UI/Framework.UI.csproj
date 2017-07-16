@@ -43,17 +43,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\MRButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MRButton.Designer.cs">
+      <DependentUpon>MRButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MRGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MRGroupBox.Designer.cs">
+      <DependentUpon>MRGroupBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MRLabel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\MRLabel.Designer.cs">
       <DependentUpon>MRLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MRButtonBar.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Controls\MRPanel.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\MRButtonBar.Designer.cs">
-      <DependentUpon>MRButtonBar.cs</DependentUpon>
+    <Compile Include="Controls\MRPanel.Designer.cs">
+      <DependentUpon>MRPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MRTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MRTextBox.Designer.cs">
+      <DependentUpon>MRTextBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\MRTitleBar.cs">
       <SubType>UserControl</SubType>
@@ -83,9 +101,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\MRButtonBar.resx">
-      <DependentUpon>MRButtonBar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Controls\MRTitleBar.resx">
       <DependentUpon>MRTitleBar.cs</DependentUpon>
     </EmbeddedResource>

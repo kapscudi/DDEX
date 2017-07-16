@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnGenerate = new System.Windows.Forms.Button();
+            this.btnGenerate = new Framework.UI.Controls.MRButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
         }
 
         #endregion
-        public System.Windows.Forms.Button btnGenerate;
+        public Framework.UI.Controls.MRButton btnGenerate;
         protected System.Windows.Forms.Panel panel1;
     }
 }

@@ -28,64 +28,63 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblPath = new System.Windows.Forms.Label();
-            this.btnLoadXml = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pnlTrackReleasesParent = new System.Windows.Forms.Panel();
-            this.pnlTrackReleases = new System.Windows.Forms.Panel();
+            this.components = new System.ComponentModel.Container();
+            this.groupBox1 = new Framework.UI.Controls.MRGroupBox(this.components);
+            this.lblPath = new Framework.UI.Controls.MRLabel(this.components);
+            this.btnLoadXml = new Framework.UI.Controls.MRButton(this.components);
+            this.groupBox2 = new Framework.UI.Controls.MRGroupBox(this.components);
+            this.groupBox5 = new Framework.UI.Controls.MRGroupBox(this.components);
+            this.label13 = new Framework.UI.Controls.MRLabel(this.components);
+            this.txtFrontCoverImageResourceReference = new Framework.UI.Controls.MRTextBox(this.components);
+            this.pnlTrackReleasesParent = new Framework.UI.Controls.MRPanel(this.components);
+            this.pnlTrackReleases = new Framework.UI.Controls.MRPanel(this.components);
             this.dgvSoundRecordingsAndReleases = new System.Windows.Forms.DataGridView();
-            this.lsOrdinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.csTracksOrdinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csTracksISRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mrButtonBar1 = new Framework.UI.Controls.MRButtonBar();
+            this.csTrackTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbTrackReleases = new Framework.UI.Controls.MRTitleBar();
-            this.pnlMessageHeaderParent = new System.Windows.Forms.Panel();
-            this.pnlMessageHeader = new System.Windows.Forms.Panel();
+            this.pnlMessageHeaderParent = new Framework.UI.Controls.MRPanel(this.components);
+            this.pnlMessageHeader = new Framework.UI.Controls.MRPanel(this.components);
             this.dpMessageCreatedDateTime = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtMessageID = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtMessageSender_PartyID = new System.Windows.Forms.TextBox();
-            this.txtMessageRecipient_PartyName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtMessageSender_PartyName = new System.Windows.Forms.TextBox();
-            this.txtMessageRecipient_PartyID = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new Framework.UI.Controls.MRLabel(this.components);
+            this.label6 = new Framework.UI.Controls.MRLabel(this.components);
+            this.txtMessageID = new Framework.UI.Controls.MRTextBox(this.components);
+            this.label4 = new Framework.UI.Controls.MRLabel(this.components);
+            this.txtMessageSender_PartyID = new Framework.UI.Controls.MRTextBox(this.components);
+            this.txtMessageRecipient_PartyName = new Framework.UI.Controls.MRTextBox(this.components);
+            this.label2 = new Framework.UI.Controls.MRLabel(this.components);
+            this.label5 = new Framework.UI.Controls.MRLabel(this.components);
+            this.txtMessageSender_PartyName = new Framework.UI.Controls.MRTextBox(this.components);
+            this.txtMessageRecipient_PartyID = new Framework.UI.Controls.MRTextBox(this.components);
+            this.label3 = new Framework.UI.Controls.MRLabel(this.components);
             this.tbMessageHeader = new Framework.UI.Controls.MRTitleBar();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtFrontCoverImageResourceReference = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.pnlMainReleaseParent = new System.Windows.Forms.Panel();
-            this.pnlMainRelease = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.pnlMainReleaseParent = new Framework.UI.Controls.MRPanel(this.components);
+            this.pnlMainRelease = new Framework.UI.Controls.MRPanel(this.components);
+            this.label8 = new Framework.UI.Controls.MRLabel(this.components);
+            this.label7 = new Framework.UI.Controls.MRLabel(this.components);
             this.cbUpdateIndicator = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtMainReleaseReferenceTitle = new System.Windows.Forms.TextBox();
-            this.txtEAN = new System.Windows.Forms.TextBox();
+            this.label12 = new Framework.UI.Controls.MRLabel(this.components);
+            this.txtMainReleaseReferenceTitle = new Framework.UI.Controls.MRTextBox(this.components);
+            this.txtEAN = new Framework.UI.Controls.MRTextBox(this.components);
             this.tbMainRelease = new Framework.UI.Controls.MRTitleBar();
             this.rtbOutput = new System.Windows.Forms.RichTextBox();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.pnlTrackReleasesParent.SuspendLayout();
             this.pnlTrackReleases.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSoundRecordingsAndReleases)).BeginInit();
             this.pnlMessageHeaderParent.SuspendLayout();
             this.pnlMessageHeader.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
             this.pnlMainReleaseParent.SuspendLayout();
             this.pnlMainRelease.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGenerate
             // 
-            this.btnGenerate.Location = new System.Drawing.Point(127, 3);
+            this.btnGenerate.Location = new System.Drawing.Point(128, 2);
             this.btnGenerate.Margin = new System.Windows.Forms.Padding(2);
             // 
             // panel1
@@ -135,9 +134,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.groupBox5);
             this.groupBox2.Controls.Add(this.pnlTrackReleasesParent);
             this.groupBox2.Controls.Add(this.pnlMessageHeaderParent);
-            this.groupBox2.Controls.Add(this.groupBox4);
             this.groupBox2.Controls.Add(this.pnlMainReleaseParent);
             this.groupBox2.Location = new System.Drawing.Point(0, 45);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -148,46 +147,93 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Učitani xml";
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label13);
+            this.groupBox5.Controls.Add(this.txtFrontCoverImageResourceReference);
+            this.groupBox5.Location = new System.Drawing.Point(24, 399);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
+            this.groupBox5.Size = new System.Drawing.Size(637, 62);
+            this.groupBox5.TabIndex = 4;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Front Cover Image";
+            // 
+            // label13
+            // 
+            this.label13.Location = new System.Drawing.Point(11, 15);
+            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(122, 18);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "ResourceReference";
+            // 
+            // txtFrontCoverImageResourceReference
+            // 
+            this.txtFrontCoverImageResourceReference.Location = new System.Drawing.Point(179, 15);
+            this.txtFrontCoverImageResourceReference.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFrontCoverImageResourceReference.Name = "txtFrontCoverImageResourceReference";
+            this.txtFrontCoverImageResourceReference.Size = new System.Drawing.Size(148, 20);
+            this.txtFrontCoverImageResourceReference.TabIndex = 1;
+            // 
             // pnlTrackReleasesParent
             // 
             this.pnlTrackReleasesParent.Controls.Add(this.pnlTrackReleases);
             this.pnlTrackReleasesParent.Controls.Add(this.tbTrackReleases);
             this.pnlTrackReleasesParent.Location = new System.Drawing.Point(24, 169);
             this.pnlTrackReleasesParent.Name = "pnlTrackReleasesParent";
-            this.pnlTrackReleasesParent.Size = new System.Drawing.Size(417, 128);
+            this.pnlTrackReleasesParent.Size = new System.Drawing.Size(762, 206);
             this.pnlTrackReleasesParent.TabIndex = 17;
             // 
             // pnlTrackReleases
             // 
             this.pnlTrackReleases.Controls.Add(this.dgvSoundRecordingsAndReleases);
-            this.pnlTrackReleases.Controls.Add(this.mrButtonBar1);
             this.pnlTrackReleases.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTrackReleases.Location = new System.Drawing.Point(0, 24);
             this.pnlTrackReleases.Name = "pnlTrackReleases";
-            this.pnlTrackReleases.Size = new System.Drawing.Size(417, 104);
+            this.pnlTrackReleases.Size = new System.Drawing.Size(762, 182);
             this.pnlTrackReleases.TabIndex = 18;
             // 
             // dgvSoundRecordingsAndReleases
             // 
             this.dgvSoundRecordingsAndReleases.AllowUserToAddRows = false;
             this.dgvSoundRecordingsAndReleases.AllowUserToDeleteRows = false;
+            this.dgvSoundRecordingsAndReleases.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvSoundRecordingsAndReleases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.lsOrdinal,
-            this.csTracksISRC});
+            this.csEdit,
+            this.csTracksOrdinal,
+            this.csTracksISRC,
+            this.csTrackTitle});
             this.dgvSoundRecordingsAndReleases.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvSoundRecordingsAndReleases.GridColor = System.Drawing.Color.DarkGray;
             this.dgvSoundRecordingsAndReleases.Location = new System.Drawing.Point(0, 0);
+            this.dgvSoundRecordingsAndReleases.MultiSelect = false;
             this.dgvSoundRecordingsAndReleases.Name = "dgvSoundRecordingsAndReleases";
             this.dgvSoundRecordingsAndReleases.ReadOnly = true;
-            this.dgvSoundRecordingsAndReleases.Size = new System.Drawing.Size(417, 76);
+            this.dgvSoundRecordingsAndReleases.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSoundRecordingsAndReleases.Size = new System.Drawing.Size(762, 182);
             this.dgvSoundRecordingsAndReleases.TabIndex = 3;
             this.dgvSoundRecordingsAndReleases.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // lsOrdinal
+            // csEdit
             // 
-            this.lsOrdinal.DataPropertyName = "Ordinal";
-            this.lsOrdinal.HeaderText = "Ordinal";
-            this.lsOrdinal.Name = "lsOrdinal";
-            this.lsOrdinal.ReadOnly = true;
+            this.csEdit.HeaderText = "";
+            this.csEdit.Image = global::DDEX.Properties.Resources.Edit;
+            this.csEdit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.csEdit.MinimumWidth = 20;
+            this.csEdit.Name = "csEdit";
+            this.csEdit.ReadOnly = true;
+            this.csEdit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csEdit.ToolTipText = "Edit selected record";
+            this.csEdit.Width = 20;
+            // 
+            // csTracksOrdinal
+            // 
+            this.csTracksOrdinal.DataPropertyName = "Ordinal";
+            this.csTracksOrdinal.HeaderText = "Ordinal";
+            this.csTracksOrdinal.Name = "csTracksOrdinal";
+            this.csTracksOrdinal.ReadOnly = true;
             // 
             // csTracksISRC
             // 
@@ -196,25 +242,23 @@
             this.csTracksISRC.Name = "csTracksISRC";
             this.csTracksISRC.ReadOnly = true;
             // 
-            // mrButtonBar1
+            // csTrackTitle
             // 
-            this.mrButtonBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.mrButtonBar1.Horizontal = true;
-            this.mrButtonBar1.Location = new System.Drawing.Point(0, 76);
-            this.mrButtonBar1.Margin = new System.Windows.Forms.Padding(0);
-            this.mrButtonBar1.Name = "mrButtonBar1";
-            this.mrButtonBar1.Size = new System.Drawing.Size(417, 28);
-            this.mrButtonBar1.TabIndex = 4;
-            this.mrButtonBar1.Changed += new Framework.UI.Controls.MRButtonBar.ChangedEventHandler(this.bbTracks_Changed);
+            this.csTrackTitle.DataPropertyName = "Title";
+            this.csTrackTitle.HeaderText = "Title";
+            this.csTrackTitle.Name = "csTrackTitle";
+            this.csTrackTitle.ReadOnly = true;
             // 
             // tbTrackReleases
             // 
+            this.tbTrackReleases.AddVisible = true;
             this.tbTrackReleases.Dock = System.Windows.Forms.DockStyle.Top;
             this.tbTrackReleases.Location = new System.Drawing.Point(0, 0);
             this.tbTrackReleases.Name = "tbTrackReleases";
-            this.tbTrackReleases.Size = new System.Drawing.Size(417, 24);
+            this.tbTrackReleases.Size = new System.Drawing.Size(762, 24);
             this.tbTrackReleases.TabIndex = 16;
             this.tbTrackReleases.Title = "Track Releases";
+            this.tbTrackReleases.ButtonClicked += new Framework.UI.Controls.MRTitleBar.ButtonClickedEventHandler(this.tbTrackReleases_ButtonClicked);
             // 
             // pnlMessageHeaderParent
             // 
@@ -358,58 +402,6 @@
             this.tbMessageHeader.TabIndex = 12;
             this.tbMessageHeader.Title = "Message Header";
             // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.groupBox5);
-            this.groupBox4.Controls.Add(this.panel2);
-            this.groupBox4.Location = new System.Drawing.Point(4, 284);
-            this.groupBox4.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox4.Size = new System.Drawing.Size(844, 191);
-            this.groupBox4.TabIndex = 3;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "NewReleaseMessage";
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.label13);
-            this.groupBox5.Controls.Add(this.txtFrontCoverImageResourceReference);
-            this.groupBox5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox5.Location = new System.Drawing.Point(2, 54);
-            this.groupBox5.Margin = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox5.Size = new System.Drawing.Size(840, 62);
-            this.groupBox5.TabIndex = 4;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Front Cover Image";
-            // 
-            // label13
-            // 
-            this.label13.Location = new System.Drawing.Point(11, 15);
-            this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(122, 18);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "ResourceReference";
-            // 
-            // txtFrontCoverImageResourceReference
-            // 
-            this.txtFrontCoverImageResourceReference.Location = new System.Drawing.Point(179, 15);
-            this.txtFrontCoverImageResourceReference.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFrontCoverImageResourceReference.Name = "txtFrontCoverImageResourceReference";
-            this.txtFrontCoverImageResourceReference.Size = new System.Drawing.Size(148, 20);
-            this.txtFrontCoverImageResourceReference.TabIndex = 1;
-            // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(2, 15);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(840, 39);
-            this.panel2.TabIndex = 6;
-            // 
             // pnlMainReleaseParent
             // 
             this.pnlMainReleaseParent.Controls.Add(this.pnlMainRelease);
@@ -521,15 +513,14 @@
             this.panel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.pnlTrackReleasesParent.ResumeLayout(false);
             this.pnlTrackReleases.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSoundRecordingsAndReleases)).EndInit();
             this.pnlMessageHeaderParent.ResumeLayout(false);
             this.pnlMessageHeader.ResumeLayout(false);
             this.pnlMessageHeader.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
             this.pnlMainReleaseParent.ResumeLayout(false);
             this.pnlMainRelease.ResumeLayout(false);
             this.pnlMainRelease.PerformLayout();
@@ -539,46 +530,45 @@
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
-        public System.Windows.Forms.Button btnLoadXml;
-        private System.Windows.Forms.Label lblPath;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox txtMessageID;
-        private System.Windows.Forms.Label label1;
+        private Framework.UI.Controls.MRGroupBox groupBox1;
+        public Framework.UI.Controls.MRButton btnLoadXml;
+        private Framework.UI.Controls.MRLabel lblPath;
+        private Framework.UI.Controls.MRGroupBox groupBox2;
+        private Framework.UI.Controls.MRTextBox txtMessageID;
+        private Framework.UI.Controls.MRLabel label1;
         private System.Windows.Forms.RichTextBox rtbOutput;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtMessageSender_PartyName;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtMessageSender_PartyID;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtMessageRecipient_PartyName;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtMessageRecipient_PartyID;
+        private Framework.UI.Controls.MRLabel label3;
+        private Framework.UI.Controls.MRTextBox txtMessageSender_PartyName;
+        private Framework.UI.Controls.MRLabel label2;
+        private Framework.UI.Controls.MRTextBox txtMessageSender_PartyID;
+        private Framework.UI.Controls.MRLabel label4;
+        private Framework.UI.Controls.MRTextBox txtMessageRecipient_PartyName;
+        private Framework.UI.Controls.MRLabel label5;
+        private Framework.UI.Controls.MRTextBox txtMessageRecipient_PartyID;
         private System.Windows.Forms.DateTimePicker dpMessageCreatedDateTime;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.GroupBox groupBox4;
+        private Framework.UI.Controls.MRLabel label6;
         private System.Windows.Forms.ComboBox cbUpdateIndicator;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox txtFrontCoverImageResourceReference;
+        private Framework.UI.Controls.MRLabel label12;
+        private Framework.UI.Controls.MRGroupBox groupBox5;
+        private Framework.UI.Controls.MRLabel label13;
+        private Framework.UI.Controls.MRTextBox txtFrontCoverImageResourceReference;
         private System.Windows.Forms.DataGridView dgvSoundRecordingsAndReleases;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox txtMainReleaseReferenceTitle;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtEAN;
-        private System.Windows.Forms.Panel panel2;
+        private Framework.UI.Controls.MRLabel label8;
+        private Framework.UI.Controls.MRTextBox txtMainReleaseReferenceTitle;
+        private Framework.UI.Controls.MRLabel label7;
+        private Framework.UI.Controls.MRTextBox txtEAN;
         private Framework.UI.Controls.MRTitleBar tbMainRelease;
-        private System.Windows.Forms.Panel pnlMainReleaseParent;
-        private System.Windows.Forms.Panel pnlMainRelease;
-        private System.Windows.Forms.Panel pnlMessageHeaderParent;
-        private System.Windows.Forms.Panel pnlMessageHeader;
+        private Framework.UI.Controls.MRPanel pnlMainReleaseParent;
+        private Framework.UI.Controls.MRPanel pnlMainRelease;
+        private Framework.UI.Controls.MRPanel pnlMessageHeaderParent;
+        private Framework.UI.Controls.MRPanel pnlMessageHeader;
         private Framework.UI.Controls.MRTitleBar tbMessageHeader;
-        private System.Windows.Forms.Panel pnlTrackReleasesParent;
+        private Framework.UI.Controls.MRPanel pnlTrackReleasesParent;
         private Framework.UI.Controls.MRTitleBar tbTrackReleases;
-        private System.Windows.Forms.Panel pnlTrackReleases;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lsOrdinal;
+        private Framework.UI.Controls.MRPanel pnlTrackReleases;
+        private System.Windows.Forms.DataGridViewImageColumn csEdit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csTracksOrdinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn csTracksISRC;
-        private Framework.UI.Controls.MRButtonBar mrButtonBar1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn csTrackTitle;
     }
 }

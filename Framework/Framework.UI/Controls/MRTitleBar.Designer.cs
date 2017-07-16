@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MRTitleBar));
             this.pnlTitle = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.btnCollapse = new System.Windows.Forms.Button();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnExpand = new System.Windows.Forms.Button();
@@ -40,6 +41,7 @@
             // 
             this.pnlTitle.BackColor = System.Drawing.Color.LightGoldenrodYellow;
             this.pnlTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pnlTitle.Controls.Add(this.btnAdd);
             this.pnlTitle.Controls.Add(this.btnCollapse);
             this.pnlTitle.Controls.Add(this.lblTitle);
             this.pnlTitle.Controls.Add(this.btnExpand);
@@ -48,6 +50,20 @@
             this.pnlTitle.Name = "pnlTitle";
             this.pnlTitle.Size = new System.Drawing.Size(430, 24);
             this.pnlTitle.TabIndex = 0;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd.BackgroundImage = global::Framework.UI.Properties.Resources.Add;
+            this.btnAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnAdd.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnAdd.Location = new System.Drawing.Point(357, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(23, 20);
+            this.btnAdd.TabIndex = 4;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Visible = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnCollapse
             // 
@@ -102,5 +118,6 @@
         private System.Windows.Forms.Button btnCollapse;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnExpand;
+        private System.Windows.Forms.Button btnAdd;
     }
 }

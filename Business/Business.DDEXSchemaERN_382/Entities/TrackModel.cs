@@ -1,14 +1,14 @@
 ﻿namespace Business.DDEXSchemaERN_382.Entities
 {
-    public class TrackModel
+    public class TrackModel: BindableModel
     {
         // track release
-        public int Ordinal { get; set; }
-        public string ISRC { get; set; }
-        public string Title { get; set; }
+        public int Ordinal{ get { return Get<int>(); } set { Set(value); } }      
+        public string ISRC { get { return Get<string>(); } set { Set(value); } }
+        public string Title { get { return Get<string>(); } set { Set(value); } }
 
         // soundrecording
-        public string Genre { get; set; }
-        public string SubGenre { get; set; }
+        public string Genre { get { return Get<string>(); } set { Set(value); } }
+        public string SubGenre { get { return Get<string>(); } set { Set(value); } }
     }
 }

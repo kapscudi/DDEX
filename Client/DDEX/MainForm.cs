@@ -52,8 +52,7 @@ namespace DDEX
     /*
  TODO:
     - prebaciti sve na web
-    - napraviti deserijalizaciju audiosingle primjera pa pogledati nejasnoce
-    - iz generation forme maknuti izradu fajla - forme su samo za dobivanje objekata
+    - napraviti deserijalizaciju audiosingle primjera pa pogledati nejasnoce    - iz generation forme maknuti izradu fajla - forme su samo za dobivanje objekata
     - proci dva tipa xml i sve sto se ponavlja enkapsulirati u kontrole ili forme
     - soundRecording - mozda voditi u posebnom sifrarniku
     - servisom razgovariti s bazom

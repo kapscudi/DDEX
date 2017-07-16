@@ -37,7 +37,30 @@ namespace Business.DDEXSchemaERN_382.Entities
         }
 
         public virtual bool IsValid { get { return true; } }
-        
-        
+
+        public virtual BindableModel Copy()
+        {
+            BindableModel ret = (BindableModel) Activator.CreateInstance(GetType());
+
+            // shallow copy
+            var properties = GetType().GetProperties().ToList();
+            properties.ForEach(x => 
+                {
+                    if (x.CanWrite) x.SetValue(ret, x.GetValue(this));
+                }
+            );
+
+            return ret;
+        }
+
+        public virtual void CopyFromSource(BindableModel source)
+        {
+            var properties = GetType().GetProperties().ToList();
+            properties.ForEach(x =>
+                {
+                    if (x.CanWrite) x.SetValue(this, x.GetValue(source));
+                }
+            );
+        }
     }
 }

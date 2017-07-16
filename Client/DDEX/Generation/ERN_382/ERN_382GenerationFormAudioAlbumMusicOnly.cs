@@ -7,6 +7,7 @@ using System.ComponentModel;
 using Business.DDEXSchemaERN_382.Entities;
 using Business.DDEXSchemaERN_382;
 using System.Linq;
+using Framework.UI.Forms;
 
 namespace DDEX.Generation.ERN_382
 {
@@ -307,6 +308,7 @@ namespace DDEX.Generation.ERN_382
 
                     var xmlObject = Binder.GetXmlObjectFromFile(lblPath.Text);
                     Model = (AudioAlbumModel) Binder.GetModelFromXmlObject(xmlObject);
+                    dgvSoundRecordingsAndReleases.ClearSelection();
                 }
             }
         }
@@ -335,6 +337,8 @@ namespace DDEX.Generation.ERN_382
             lblPath.Text = "C:\\temp\\file.xml";
             Model = (AudioAlbumModel) Binder.GetModelFromXmlObject(Binder.GetXmlObjectFromFile(lblPath.Text));
             InitBindings();
+
+            dgvSoundRecordingsAndReleases.ClearSelection();
         }
 
         private void InitBindings()
@@ -392,7 +396,37 @@ namespace DDEX.Generation.ERN_382
                 }
 
             }
+            
+        }
 
+        private void dgvSoundRecordingsAndReleases_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int editIndex = 0;
+            int deleteIndex = 1;
+            if (e.ColumnIndex == editIndex)
+            {
+                TrackModel track = (TrackModel) dgvSoundRecordingsAndReleases.CurrentRow.DataBoundItem;
+                if (track != null)
+                {
+                    using (var frm = new ERN_382TrackReleaseForm((TrackModel)track.Copy()))
+                    {
+                        if (frm.ShowDialog() == DialogResult.OK)
+                        {
+                            track.CopyFromSource(frm.Model);
+                        }
+                    }
+                }
+            }
+            else if (e.ColumnIndex == deleteIndex)
+            {
+                using (var f = new MRMessageBox("Želite li obrisati zapis?", MRMessageBox.eMessageBoxStyle.YesNo))
+                {
+                    if (f.ShowDialog() == DialogResult.Yes)
+                    {
+                        dgvSoundRecordingsAndReleases.Rows.RemoveAt(e.RowIndex);
+                    }
+                }
+            }
 
         }
     }

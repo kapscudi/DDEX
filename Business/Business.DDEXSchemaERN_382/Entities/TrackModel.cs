@@ -1,4 +1,6 @@
-﻿namespace Business.DDEXSchemaERN_382.Entities
+﻿using System;
+
+namespace Business.DDEXSchemaERN_382.Entities
 {
     public class TrackModel: BindableModel
     {
@@ -10,5 +12,6 @@
         // soundrecording
         public string Genre { get { return Get<string>(); } set { Set(value); } }
         public string SubGenre { get { return Get<string>(); } set { Set(value); } }
+        
     }
 }

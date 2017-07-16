@@ -79,6 +79,12 @@
     <Compile Include="Controls\MRTitleBar.Designer.cs">
       <DependentUpon>MRTitleBar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MRMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MRMessageBox.Designer.cs">
+      <DependentUpon>MRMessageBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\MRMDIParent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,6 +109,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Controls\MRTitleBar.resx">
       <DependentUpon>MRTitleBar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MRMessageBox.resx">
+      <DependentUpon>MRMessageBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MRMDIParent.resx">
       <DependentUpon>MRMDIParent.cs</DependentUpon>

@@ -43,7 +43,6 @@
     <Compile Include="Binder.cs" />
     <Compile Include="Entities\AudioAlbumModel.cs" />
     <Compile Include="Entities\BindableModel.cs" />
-    <Compile Include="Entities\Class1.cs" />
     <Compile Include="BindingObjects\SortableBindingList.cs" />
     <Compile Include="Entities\TrackModel.cs" />
     <Compile Include="Generation\ERN_382GenerationFactory.cs" />

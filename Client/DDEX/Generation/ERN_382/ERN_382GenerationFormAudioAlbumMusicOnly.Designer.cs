@@ -39,10 +39,6 @@
             this.pnlTrackReleasesParent = new Framework.UI.Controls.MRPanel(this.components);
             this.pnlTrackReleases = new Framework.UI.Controls.MRPanel(this.components);
             this.dgvSoundRecordingsAndReleases = new System.Windows.Forms.DataGridView();
-            this.csEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.csTracksOrdinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csTracksISRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.csTrackTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbTrackReleases = new Framework.UI.Controls.MRTitleBar();
             this.pnlMessageHeaderParent = new Framework.UI.Controls.MRPanel(this.components);
             this.pnlMessageHeader = new Framework.UI.Controls.MRPanel(this.components);
@@ -69,6 +65,11 @@
             this.txtEAN = new Framework.UI.Controls.MRTextBox(this.components);
             this.tbMainRelease = new Framework.UI.Controls.MRTitleBar();
             this.rtbOutput = new System.Windows.Forms.RichTextBox();
+            this.csEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.csDelete = new System.Windows.Forms.DataGridViewImageColumn();
+            this.csTracksOrdinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csTracksISRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.csTrackTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -202,6 +203,7 @@
             this.dgvSoundRecordingsAndReleases.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dgvSoundRecordingsAndReleases.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.csEdit,
+            this.csDelete,
             this.csTracksOrdinal,
             this.csTracksISRC,
             this.csTrackTitle});
@@ -214,40 +216,8 @@
             this.dgvSoundRecordingsAndReleases.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSoundRecordingsAndReleases.Size = new System.Drawing.Size(762, 182);
             this.dgvSoundRecordingsAndReleases.TabIndex = 3;
-            this.dgvSoundRecordingsAndReleases.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // csEdit
-            // 
-            this.csEdit.HeaderText = "";
-            this.csEdit.Image = global::DDEX.Properties.Resources.Edit;
-            this.csEdit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.csEdit.MinimumWidth = 20;
-            this.csEdit.Name = "csEdit";
-            this.csEdit.ReadOnly = true;
-            this.csEdit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.csEdit.ToolTipText = "Edit selected record";
-            this.csEdit.Width = 20;
-            // 
-            // csTracksOrdinal
-            // 
-            this.csTracksOrdinal.DataPropertyName = "Ordinal";
-            this.csTracksOrdinal.HeaderText = "Ordinal";
-            this.csTracksOrdinal.Name = "csTracksOrdinal";
-            this.csTracksOrdinal.ReadOnly = true;
-            // 
-            // csTracksISRC
-            // 
-            this.csTracksISRC.DataPropertyName = "ISRC";
-            this.csTracksISRC.HeaderText = "ISRC";
-            this.csTracksISRC.Name = "csTracksISRC";
-            this.csTracksISRC.ReadOnly = true;
-            // 
-            // csTrackTitle
-            // 
-            this.csTrackTitle.DataPropertyName = "Title";
-            this.csTrackTitle.HeaderText = "Title";
-            this.csTrackTitle.Name = "csTrackTitle";
-            this.csTrackTitle.ReadOnly = true;
+            this.dgvSoundRecordingsAndReleases.TabStop = false;
+            this.dgvSoundRecordingsAndReleases.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSoundRecordingsAndReleases_CellClick);
             // 
             // tbTrackReleases
             // 
@@ -498,6 +468,50 @@
             this.rtbOutput.TabIndex = 5;
             this.rtbOutput.Text = "";
             // 
+            // csEdit
+            // 
+            this.csEdit.HeaderText = "";
+            this.csEdit.Image = global::DDEX.Properties.Resources.Edit;
+            this.csEdit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.csEdit.MinimumWidth = 20;
+            this.csEdit.Name = "csEdit";
+            this.csEdit.ReadOnly = true;
+            this.csEdit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csEdit.ToolTipText = "Edit selected record";
+            this.csEdit.Width = 20;
+            // 
+            // csDelete
+            // 
+            this.csDelete.HeaderText = "";
+            this.csDelete.Image = global::DDEX.Properties.Resources.Delete;
+            this.csDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.csDelete.MinimumWidth = 20;
+            this.csDelete.Name = "csDelete";
+            this.csDelete.ReadOnly = true;
+            this.csDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csDelete.Width = 20;
+            // 
+            // csTracksOrdinal
+            // 
+            this.csTracksOrdinal.DataPropertyName = "Ordinal";
+            this.csTracksOrdinal.HeaderText = "Ordinal";
+            this.csTracksOrdinal.Name = "csTracksOrdinal";
+            this.csTracksOrdinal.ReadOnly = true;
+            // 
+            // csTracksISRC
+            // 
+            this.csTracksISRC.DataPropertyName = "ISRC";
+            this.csTracksISRC.HeaderText = "ISRC";
+            this.csTracksISRC.Name = "csTracksISRC";
+            this.csTracksISRC.ReadOnly = true;
+            // 
+            // csTrackTitle
+            // 
+            this.csTrackTitle.DataPropertyName = "Title";
+            this.csTrackTitle.HeaderText = "Title";
+            this.csTrackTitle.Name = "csTrackTitle";
+            this.csTrackTitle.ReadOnly = true;
+            // 
             // ERN_382GenerationFormAudioAlbumMusicOnly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -567,6 +581,7 @@
         private Framework.UI.Controls.MRTitleBar tbTrackReleases;
         private Framework.UI.Controls.MRPanel pnlTrackReleases;
         private System.Windows.Forms.DataGridViewImageColumn csEdit;
+        private System.Windows.Forms.DataGridViewImageColumn csDelete;
         private System.Windows.Forms.DataGridViewTextBoxColumn csTracksOrdinal;
         private System.Windows.Forms.DataGridViewTextBoxColumn csTracksISRC;
         private System.Windows.Forms.DataGridViewTextBoxColumn csTrackTitle;

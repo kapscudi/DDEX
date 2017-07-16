@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Business.DDEXSchemaERN_382.Entities;
@@ -20,26 +20,62 @@ namespace Business.DDEXSchemaERN_382
             Factory = new Generation.ERN_382GenerationFactory();
             Generator = Factory.GetGenerator();
         }
+
+        public bool IsFileValid(string fileName, out string message)
+        {
+            string xmlValue = Generator.LoadXmlFile(fileName);
+            return Generator.IsValid(xmlValue, out message);
+        }
+
+        public bool IsModelValid(IBindableModel model, out string message)
+        {
+            bool isValid = true;
+
+            var xmlObject = GetXmlObjectFromModel(model);
+            var str = Generator.SerializeXmlObject(xmlObject);
+            isValid = Generator.IsValid(str, out message);
+
+            return isValid;
+        }
+
+        public void WriteXmlObjectToFile(IXmlObject xmlObject, string fileName)
+        {
+            IXmlGenerator gen = Factory.GetGenerator();
+
+            var str = gen.SerializeXmlObject(xmlObject);
+            gen.WriteXmlFile(fileName, str);
+            System.IO.File.WriteAllText(fileName, str);
+        }
+
+        public IXmlObject GetXmlObjectFromFile(string fileName)
+        {
+            string str = Generator.LoadXmlFile(fileName);
+            //TODO - maknuti nakon sto sve budde implementirano
+            InitialFileName = fileName;
+
+            return Generator.DeserializeXmlObject(str);
+        }
+
         public IXmlObject GetXmlObjectFromModel(IBindableModel model)
         {
             NewReleaseMessage ret;
             AudioAlbumModel m = (AudioAlbumModel)model;
             if (InitialFileName != null)
             {
-                ret = (NewReleaseMessage) GetXmlObjectFromFile(InitialFileName);
+                ret = (NewReleaseMessage)GetXmlObjectFromFile(InitialFileName);
             }
             else
             {
                 ret = new NewReleaseMessage()
-                        {
-                            ReleaseProfileVersionId = "CommonReleaseTypesTypes/13/AudioAlbumMusicOnly",
-                            LanguageAndScriptCode = "en",
-                            MessageSchemaVersionId = "ern/382",
-                            IsBackfill = false,
-                            IsBackfillSpecified = true
-                        };
+                {
+                    ReleaseProfileVersionId = "CommonReleaseTypesTypes/13/AudioAlbumMusicOnly",
+                    LanguageAndScriptCode = "en",
+                    MessageSchemaVersionId = "ern/382",
+                    IsBackfill = false,
+                    IsBackfillSpecified = true
+                };
             }
-            
+
             if (ret.MessageHeader == null)
             {
                 ret.MessageHeader = new MessageHeader();
@@ -118,7 +154,43 @@ namespace Business.DDEXSchemaERN_382
             ret.ReleaseList.Release[0].ReleaseId[0].ICPN.IsEan = true;
             ret.ReleaseList.Release[0].ReleaseId[0].ICPN.IsEanSpecified = true;
             ret.ReleaseList.Release[0].ReleaseId[0].ICPN.Value = m.EAN;
-           
+
+            //Ordinal = Convert.ToInt32(rel.ReleaseReference.FirstOrDefault().TrimStart('R')),
+            //                    ISRC = rel.ReleaseId.FirstOrDefault().ISRC,
+            //                    Title = rel.ReferenceTitle.TitleText.Value,
+            //                    Genre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().GenreText.Value,
+            //                    SubGenre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().SubGenre.Value
+
+            if (m.Tracks.Any())
+            {
+                if (ret.ReleaseList == null)
+                {
+                    ret.ReleaseList = new ReleaseList();
+                }
+                if (ret.ReleaseList.Release == null)
+                {
+                    ret.ReleaseList.Release = new Release[m.Tracks.Count];
+                }
+                for (int i = 0; i < m.Tracks.Count; i++)
+                {
+                    var track = m.Tracks[i];
+                    var rel = ret.ReleaseList.Release[i+1];
+                    if (rel.ReleaseReference == null || rel.ReleaseReference.Length == 0) rel.ReleaseReference = new string[1];
+                    rel.ReleaseReference[0] = "R" + track.Ordinal;
+                    if (rel.ReleaseId == null || rel.ReleaseId.Length == 0) rel.ReleaseId = new ReleaseId[1];
+                    rel.ReleaseId[0].ISRC = track.ISRC;
+                    if (rel.ReferenceTitle == null) rel.ReferenceTitle = new ReferenceTitle();
+                    if (rel.ReferenceTitle.TitleText == null) rel.ReferenceTitle.TitleText = new TitleText();
+                    rel.ReferenceTitle.TitleText.Value = track.Title;
+                    if (rel.ReleaseDetailsByTerritory == null || rel.ReleaseDetailsByTerritory.Length == 0) rel.ReleaseDetailsByTerritory = new ReleaseDetailsByTerritory[1];
+                    if (rel.ReleaseDetailsByTerritory[0].Genre == null || rel.ReleaseDetailsByTerritory[0].Genre.Length == 0) rel.ReleaseDetailsByTerritory[0].Genre = new Genre[1];
+                    if (rel.ReleaseDetailsByTerritory[0].Genre[0].GenreText == null) rel.ReleaseDetailsByTerritory[0].Genre[0].GenreText = new Description();
+                    rel.ReleaseDetailsByTerritory[0].Genre[0].GenreText.Value = track.Genre;
+                    if (rel.ReleaseDetailsByTerritory[0].Genre[0].SubGenre == null) rel.ReleaseDetailsByTerritory[0].Genre[0].SubGenre = new Description();
+                    rel.ReleaseDetailsByTerritory[0].Genre[0].SubGenre.Value = track.SubGenre;
+                }
+                // TODO - tracks zapisati u soundrecordings
+            }
             return ret;
         }
 
@@ -154,45 +226,31 @@ namespace Business.DDEXSchemaERN_382
                     {
                         ret.EAN = nrm.ReleaseList.Release[0].ReleaseId[0].ICPN.Value;
                     }
+
+                    if (nrm.ReleaseList != null && nrm.ReleaseList.Release != null && nrm.ReleaseList.Release.Any())
+                    {
+                        ret.Tracks.RaiseListChangedEvents = false;
+                        foreach (var rel in nrm.ReleaseList.Release.Where(x => !x.IsMainRelease))
+                        {
+                            var track = new TrackModel()
+                            {
+                                Ordinal = Convert.ToInt32(rel.ReleaseReference.FirstOrDefault().TrimStart('R')),
+                                ISRC = rel.ReleaseId.FirstOrDefault().ISRC,
+                                Title = rel.ReferenceTitle.TitleText.Value,
+                                Genre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().GenreText.Value,
+                                SubGenre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().SubGenre.Value
+                            };
+
+                            ret.Tracks.Add(track);
+                        }
+                        ret.Tracks.RaiseListChangedEvents = true;
+                        ret.Tracks.ResetBindings();
+                    }
                 }
             }
 
             return ret;
         }
 
-        public bool IsFileValid(string fileName, out string message)
-        {
-            string xmlValue = Generator.LoadXmlFile(fileName);
-            return Generator.IsValid(xmlValue, out message);
-        }
-
-        public bool IsModelValid(IBindableModel model, out string message)
-        {
-            bool isValid = true;
-
-            var xmlObject = GetXmlObjectFromModel(model);
-            var str = Generator.SerializeXmlObject(xmlObject);
-            isValid = Generator.IsValid(str, out message);
-
-            return isValid;
-        }
-
-        public void WriteXmlObjectToFile(IXmlObject xmlObject, string fileName)
-        {
-            IXmlGenerator gen = Factory.GetGenerator();
-
-            var str = gen.SerializeXmlObject(xmlObject);
-            gen.WriteXmlFile(fileName, str);
-            System.IO.File.WriteAllText(fileName, str);
-        }
-
-        public IXmlObject GetXmlObjectFromFile(string fileName)
-        {
-            string str = Generator.LoadXmlFile(fileName);
-            //TODO - maknuti nakon sto sve budde implementirano
-            InitialFileName = fileName;
-
-            return Generator.DeserializeXmlObject(str);
-        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Business.DDEXFactory.Intefaces;
+using System;
 
 namespace Business.DDEXSchemaERN_382.Entities
 {
@@ -12,6 +13,9 @@ namespace Business.DDEXSchemaERN_382.Entities
         // soundrecording
         public string Genre { get { return Get<string>(); } set { Set(value); } }
         public string SubGenre { get { return Get<string>(); } set { Set(value); } }
-        
+        public override bool IsValid(out string message)
+        {
+            return base.IsValid(out message);
+        }
     }
 }

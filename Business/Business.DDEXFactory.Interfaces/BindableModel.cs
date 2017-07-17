@@ -1,4 +1,4 @@
-﻿using Business.DDEXSchemaERN_382.Interfaces;
+﻿using Business.DDEXFactory.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DDEXSchemaERN_382.Entities
+namespace Business.DDEXFactory.Intefaces
 {
     public class BindableModel : INotifyPropertyChanged, IBindableModel
     {
@@ -36,7 +36,11 @@ namespace Business.DDEXSchemaERN_382.Entities
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public virtual bool IsValid { get { return true; } }
+        public virtual bool IsValid(out string message)
+        {
+            message = "";
+            return true;
+        }
 
         public virtual BindableModel Copy()
         {

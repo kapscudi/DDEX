@@ -99,5 +99,12 @@ namespace Framework.UI.Forms
         }
 
 
+        public static DialogResult Show(string message, eMessageBoxStyle style, eMessageBoxType type)
+        {
+            using (var frm = new MRMessageBox(message, style) {  MessageBoxType = type })
+            {
+                return frm.ShowDialog();
+            }
+        }
     }
 }

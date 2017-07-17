@@ -296,7 +296,6 @@ namespace DDEX.Generation.ERN_382
         //}
         //private NewReleaseMessage XmlObject { get; set; }
         #endregion
-
         private void btnLoadXml_Click(object sender, EventArgs e)
         {
             using (var dlg = new OpenFileDialog())
@@ -346,7 +345,8 @@ namespace DDEX.Generation.ERN_382
             cbUpdateIndicator.DataSource = new List<ComboBoxItem>() { new ComboBoxItem() { Text = "OriginalMessage", Value = UpdateIndicator.OriginalMessage }, new ComboBoxItem() { Text = "UpdateMessage", Value = UpdateIndicator.UpdateMessage } };
             tbMainRelease.BindedControls.Add(pnlMainRelease);
             tbMessageHeader.BindedControls.Add(pnlMessageHeader);
-            tbTrackReleases.BindedControls.Add(pnlTrackReleases);
+            //tbTrackReleases.BindedControls.Add(pnlTrackReleases);
+            tbTrackReleases.BindedControls.Add(dgvSoundRecordingsAndReleases);
 
             dgvSoundRecordingsAndReleases.AutoGenerateColumns = false;
             dgvSoundRecordingsAndReleases.DataSource = Model.Tracks;
@@ -366,15 +366,6 @@ namespace DDEX.Generation.ERN_382
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == 0)
-            {
-
-            }
-
-        }
-        
         private void tbTrackReleases_ButtonClicked(object sender, Framework.UI.Controls.MRTitleBar.ActionButtonEventArgs e)
         {
             if (e.Action == Framework.UI.Controls.MRTitleBar.eButtonAction.Add)
@@ -425,6 +416,18 @@ namespace DDEX.Generation.ERN_382
                     {
                         dgvSoundRecordingsAndReleases.Rows.RemoveAt(e.RowIndex);
                     }
+                }
+            }
+
+        }
+        private void dgvSoundRecordingsAndReleases_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            TrackModel track = (TrackModel)dgvSoundRecordingsAndReleases.CurrentRow.DataBoundItem;
+            if (track != null)
+            {
+                using (var frm = new ERN_382TrackReleaseForm((TrackModel)track.Copy()) { Editable = false })
+                {
+                    frm.ShowDialog();                    
                 }
             }
 

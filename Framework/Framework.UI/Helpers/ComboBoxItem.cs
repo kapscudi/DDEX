@@ -20,5 +20,9 @@ namespace Framework.UI.Helpers
         {
             return Object.Equals(obj, Value);
         }
+        public override int GetHashCode()
+        {
+            return Value.GetHashCode();
+        }
     }
 }

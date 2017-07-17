@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BindableModel.cs" />
+    <Compile Include="IBindableModel.cs" />
     <Compile Include="IXmlGenerationFactory.cs" />
     <Compile Include="IXmlGenerator.cs" />
     <Compile Include="IXmlObject.cs" />

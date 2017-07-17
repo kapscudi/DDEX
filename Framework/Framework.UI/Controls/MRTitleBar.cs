@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Framework.UI.Forms;
+using Framework.UI.Interfaces;
 
 namespace Framework.UI.Controls
 {
-    public partial class MRTitleBar : UserControl
+    public partial class MRTitleBar : UserControl, IMREditableControl, IMRControlCollectionParent
     {
         public MRTitleBar()
         {
@@ -111,6 +113,9 @@ namespace Framework.UI.Controls
 
         public List<Control> BindedControls { get; } = new List<Control>();
 
+        [DefaultValue(true)]
+        public bool IgnoreParentsEnabled { get; set; } = true;
+        
         public delegate void ButtonClickedEventHandler(object sender, ActionButtonEventArgs e);
         public event ButtonClickedEventHandler ButtonClicked;
         public virtual void OnButtonClicked(object sender, ActionButtonEventArgs e)
@@ -133,8 +138,22 @@ namespace Framework.UI.Controls
             public eButtonAction Action;
         }
 
-        
-        
+        private bool editable = true;
+        [DefaultValue(true)]
+        public bool Editable
+        {
+            get
+            {
+                return editable;
+            }
+            set
+            {
+                editable = value;
+                Helpers.StaticHelpers.EnableChildren(this);
+            }
+        }
+
+
     }
 }
 

@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Business.DDEXSchemaERN_382.Interfaces
+namespace Business.DDEXFactory.Interfaces
 {
     public interface IBindableModel
     {
+        bool IsValid(out string message);
     }
 }

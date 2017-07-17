@@ -42,12 +42,10 @@
   <ItemGroup>
     <Compile Include="Binder.cs" />
     <Compile Include="Entities\AudioAlbumModel.cs" />
-    <Compile Include="Entities\BindableModel.cs" />
     <Compile Include="BindingObjects\SortableBindingList.cs" />
     <Compile Include="Entities\TrackModel.cs" />
     <Compile Include="Generation\ERN_382GenerationFactory.cs" />
     <Compile Include="Generation\ERN_382Generator.cs" />
-    <Compile Include="Interfaces\IBindableModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Schema\cs\NewReleaseMessage.cs" />
     <Compile Include="Schema\cs\release-notification_avs.cs" />

@@ -1,4 +1,5 @@
-﻿using Business.DDEXSchemaERN_382.BindingObjects;
+﻿using Business.DDEXFactory.Intefaces;
+using Business.DDEXSchemaERN_382.BindingObjects;
 using Business.DDEXSchemaERN_382.Schema;
 using System;
 using System.ComponentModel;

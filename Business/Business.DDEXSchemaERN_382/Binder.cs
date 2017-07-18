@@ -10,8 +10,7 @@ namespace Business.DDEXSchemaERN_382
     {
         IXmlGenerator Generator { get; set; }
         IXmlGenerationFactory Factory { get; set; }
-        public string InitialFileName { get; set; }
-
+        
         public Binder()
         {
             Factory = new Generation.ERN_382GenerationFactory();
@@ -47,32 +46,27 @@ namespace Business.DDEXSchemaERN_382
         public IXmlObject GetXmlObjectFromFile(string fileName)
         {
             string str = Generator.LoadXmlFile(fileName);
-            //TODO - maknuti nakon sto sve budde implementirano
-            InitialFileName = fileName;
 
-            return Generator.DeserializeXmlObject(str);
+            var ret = Generator.DeserializeXmlObject(str);
+            ret.FullFileName = fileName;
+
+            return ret;
         }
 
         public IXmlObject GetXmlObjectFromModel(IBindableModel model)
         {
             NewReleaseMessage ret;
             AudioAlbumModel m = (AudioAlbumModel)model;
-            if (InitialFileName != null)
+            
+            ret = new NewReleaseMessage()
             {
-                ret = (NewReleaseMessage)GetXmlObjectFromFile(InitialFileName);
-            }
-            else
-            {
-                ret = new NewReleaseMessage()
-                {
-                    ReleaseProfileVersionId = "CommonReleaseTypesTypes/13/AudioAlbumMusicOnly",
-                    LanguageAndScriptCode = "en",
-                    MessageSchemaVersionId = "ern/382",
-                    IsBackfill = false,
-                    IsBackfillSpecified = true
-                };
-            }
-
+                ReleaseProfileVersionId = "CommonReleaseTypesTypes/13/AudioAlbumMusicOnly",
+                LanguageAndScriptCode = "en",
+                MessageSchemaVersionId = "ern/382",
+                IsBackfill = false,
+                IsBackfillSpecified = true
+            };
+            
             if (ret.MessageHeader == null)
             {
                 ret.MessageHeader = new MessageHeader();
@@ -171,10 +165,18 @@ namespace Business.DDEXSchemaERN_382
                 for (int i = 0; i < m.Tracks.Count; i++)
                 {
                     var track = m.Tracks[i];
+                    if (ret.ReleaseList.Release.Length <= (i + 1))
+                    {
+                        var x = ret.ReleaseList.Release;
+                        Array.Resize(ref x, i + 2);
+                        ret.ReleaseList.Release = x;
+                        ret.ReleaseList.Release[i + 1] = new Release();
+                    }
                     var rel = ret.ReleaseList.Release[i+1];
                     if (rel.ReleaseReference == null || rel.ReleaseReference.Length == 0) rel.ReleaseReference = new string[1];
                     rel.ReleaseReference[0] = "R" + track.Ordinal;
                     if (rel.ReleaseId == null || rel.ReleaseId.Length == 0) rel.ReleaseId = new ReleaseId[1];
+                    if (rel.ReleaseId[0] == null) rel.ReleaseId[0] = new ReleaseId();
                     rel.ReleaseId[0].ISRC = track.ISRC;
                     if (rel.ReferenceTitle == null) rel.ReferenceTitle = new ReferenceTitle();
                     if (rel.ReferenceTitle.TitleText == null) rel.ReferenceTitle.TitleText = new TitleText();
@@ -194,6 +196,8 @@ namespace Business.DDEXSchemaERN_382
         public IBindableModel GetModelFromXmlObject(IXmlObject xmlObject)
         {
             AudioAlbumModel ret = new AudioAlbumModel();
+            ret.FullFileName = xmlObject.FullFileName;
+
             NewReleaseMessage nrm = (NewReleaseMessage)xmlObject;
             if (nrm != null)
             {
@@ -219,7 +223,7 @@ namespace Business.DDEXSchemaERN_382
                     ret.MessageCreatedDateTime = nrm.MessageHeader.MessageCreatedDateTime;
                     ret.UpdateIndicator = nrm.UpdateIndicator;
 
-                    if (nrm.ReleaseList != null && nrm.ReleaseList.Release != null && nrm.ReleaseList.Release.Length > 0 && nrm.ReleaseList.Release[0].ReleaseId != null && nrm.ReleaseList.Release[0].ReleaseId.Length > 0)
+                    if (nrm.ReleaseList != null && nrm.ReleaseList.Release != null && nrm.ReleaseList.Release.Length > 0 && nrm.ReleaseList.Release[0].ReleaseId != null && nrm.ReleaseList.Release[0].ReleaseId.Length > 0 && nrm.ReleaseList.Release[0].ReleaseId[0].ICPN != null)
                     {
                         ret.EAN = nrm.ReleaseList.Release[0].ReleaseId[0].ICPN.Value;
                     }
@@ -233,11 +237,17 @@ namespace Business.DDEXSchemaERN_382
                             {
                                 Ordinal = Convert.ToInt32(rel.ReleaseReference.FirstOrDefault().TrimStart('R')),
                                 ISRC = rel.ReleaseId.FirstOrDefault().ISRC,
-                                Title = rel.ReferenceTitle.TitleText.Value,
-                                Genre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().GenreText.Value,
-                                SubGenre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().SubGenre.Value
+                                Title = rel.ReferenceTitle.TitleText.Value
                             };
-
+                            if (rel.ReleaseDetailsByTerritory != null && rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre != null && rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().GenreText != null)
+                            {
+                                track.Genre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().GenreText.Value;
+                            }
+                            if (rel.ReleaseDetailsByTerritory != null && rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre != null && rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().SubGenre != null)
+                            {
+                                track.SubGenre = rel.ReleaseDetailsByTerritory.FirstOrDefault().Genre.FirstOrDefault().SubGenre.Value;
+                            }
+                            
                             ret.Tracks.Add(track);
                         }
                         ret.Tracks.RaiseListChangedEvents = true;

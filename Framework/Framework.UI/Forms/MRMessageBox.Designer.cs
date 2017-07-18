@@ -41,24 +41,23 @@
             // 
             // lblTitle
             // 
-            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblTitle.ForeColor = System.Drawing.Color.RoyalBlue;
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(292, 148);
+            this.lblTitle.Size = new System.Drawing.Size(67, 17);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "mrLabel1";
-            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pnlYesNo
             // 
             this.pnlYesNo.Controls.Add(this.mrButton2);
             this.pnlYesNo.Controls.Add(this.mrButton1);
             this.pnlYesNo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlYesNo.Location = new System.Drawing.Point(0, 148);
+            this.pnlYesNo.Location = new System.Drawing.Point(0, 126);
             this.pnlYesNo.Name = "pnlYesNo";
-            this.pnlYesNo.Size = new System.Drawing.Size(292, 24);
+            this.pnlYesNo.Size = new System.Drawing.Size(317, 24);
             this.pnlYesNo.TabIndex = 2;
             this.pnlYesNo.Visible = false;
             // 
@@ -66,7 +65,7 @@
             // 
             this.mrButton2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.mrButton2.DialogResult = System.Windows.Forms.DialogResult.No;
-            this.mrButton2.Location = new System.Drawing.Point(165, 0);
+            this.mrButton2.Location = new System.Drawing.Point(177, 0);
             this.mrButton2.Name = "mrButton2";
             this.mrButton2.Size = new System.Drawing.Size(75, 23);
             this.mrButton2.TabIndex = 1;
@@ -77,7 +76,7 @@
             // 
             this.mrButton1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.mrButton1.DialogResult = System.Windows.Forms.DialogResult.Yes;
-            this.mrButton1.Location = new System.Drawing.Point(53, 0);
+            this.mrButton1.Location = new System.Drawing.Point(65, 0);
             this.mrButton1.Name = "mrButton1";
             this.mrButton1.Size = new System.Drawing.Size(75, 23);
             this.mrButton1.TabIndex = 0;
@@ -88,16 +87,16 @@
             // 
             this.pnlOk.Controls.Add(this.btnOK);
             this.pnlOk.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlOk.Location = new System.Drawing.Point(0, 172);
+            this.pnlOk.Location = new System.Drawing.Point(0, 150);
             this.pnlOk.Name = "pnlOk";
-            this.pnlOk.Size = new System.Drawing.Size(292, 24);
+            this.pnlOk.Size = new System.Drawing.Size(317, 24);
             this.pnlOk.TabIndex = 0;
             // 
             // btnOK
             // 
             this.btnOK.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(109, 0);
+            this.btnOK.Location = new System.Drawing.Point(121, 0);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -108,7 +107,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 196);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(317, 174);
             this.ControlBox = false;
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pnlYesNo);
@@ -122,6 +122,7 @@
             this.pnlYesNo.ResumeLayout(false);
             this.pnlOk.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

@@ -31,7 +31,8 @@ namespace Framework.UI.Forms
                 Helpers.StaticHelpers.EnableChildren(this);
             }
         }
-        
+
+
         public class DialogResultEventArgs : EventArgs
         {
             public DialogResult Result { get; set; }

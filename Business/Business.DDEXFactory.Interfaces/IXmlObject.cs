@@ -8,5 +8,6 @@ namespace Business.DDEXFactory.Interfaces
 {
     public interface IXmlObject
     {
+        string FullFileName { get; set; }
     }
 }

@@ -24,14 +24,7 @@ namespace DDEX.Navigation
         }
 
         public EditXmlFileModel Model { get; set; }
-        
-        
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-        }
-
+      
         private void Form_Load(object sender, EventArgs e)
         {
             InitBindings();
@@ -39,8 +32,7 @@ namespace DDEX.Navigation
 
         private void InitBindings()
         {
-            txtOrdinal.DataBindings.Add("Text", Model, "FileName");
-            chxbIsValid.DataBindings.Add("Checked", Model, "IsValidXml");            
+            txtOrdinal.DataBindings.Add("Text", Model, "FullName");
         }
 
         private void Form_DialogResultClicked(object sender, DialogResultEventArgs e)
@@ -50,7 +42,11 @@ namespace DDEX.Navigation
                 string message = "";
                 if (Model.IsValid(out message))
                 {
-                    DialogResult = DialogResult.OK;
+                    if (System.IO.File.Exists(Model.FullName) && MRMessageBox.Show("File exists. Overwrite?", MRMessageBox.eMessageBoxStyle.YesNo, MRMessageBox.eMessageBoxType.Warning) == DialogResult.Yes)
+                    {
+                        System.IO.File.WriteAllText(Model.FullName, "");
+                        DialogResult = DialogResult.OK;
+                    }
                 }
                 else
                 {
@@ -60,6 +56,17 @@ namespace DDEX.Navigation
             else if (e.Result == DialogResult.Cancel)
             {
                 DialogResult = DialogResult.Cancel;
+            }
+        }
+
+        private void btnOpenFile_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new SaveFileDialog() { RestoreDirectory = true, InitialDirectory = Model.DirectoryName , CheckFileExists = false })
+            {
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    Model.FullName = dlg.FileName;
+                }
             }
         }
     }

@@ -6,13 +6,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DDEX
 {
     public static class Globals
     {
+        public static Form MDIMainForm { get; set; }
         public static NavigationModel Model { get; set; } = new NavigationModel();
-
         public static void LoadNavigation()
         {
             //string navigation = System.IO.File.ReadAllText(Properties.Settings.Default.NavigationFileName);

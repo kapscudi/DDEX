@@ -1,4 +1,5 @@
-﻿using Newtonsoft;
+﻿using Business.DDEXSchemaERN_382.Entities;
+using Newtonsoft;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace DDEX.Navigation
         public FilesForm()
         {
             InitializeComponent();
+            tbFiles.BindedControls.Add(dgvFiles);
         }
         
         private NavigationModel Model
@@ -49,33 +51,34 @@ namespace DDEX.Navigation
             {
                 var record = new EditXmlFileModel();
 
-
                 using (var frm = new FileForm(record))
                 {
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         Model.Files.Add(record);
                         dgvFiles.ClearSelection();
+
+                        var model = new AudioAlbumModel() { FullFileName = record.FullName };
+                        using (var frmEdit = new Generation.ERN_382.ERN_382GenerationFormAudioAlbumMusicOnly(model))
+                        {
+                            frmEdit.ShowDialog();
+                        }
                     }
                 }
-            }
 
+                
+            }
         }
         private void dgvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //EditXmlFileModel record = (EditXmlFileModel)dgvFiles.CurrentRow.DataBoundItem;
-            //if (record != null)
-            //{
-            //    using (var frm = new FileForm((EditXmlFileModel)record.Copy()) { Editable = false })
-            //    {
-            //        frm.ShowDialog();
-            //    }
-            //}
-
-
-            // otvoriti ern album formu
-            // u model album dodati fullfilename
-            // u konstruktor forme dodati fullfilename
+            EditXmlFileModel record = (EditXmlFileModel)dgvFiles.CurrentRow.DataBoundItem;
+            if (record != null)
+            {
+                var model = new AudioAlbumModel() { FullFileName = record.FullName };
+                var frm = new Generation.ERN_382.ERN_382GenerationFormAudioAlbumMusicOnly((AudioAlbumModel) model) { Editable = true };
+                frm.MdiParent = Globals.MDIMainForm;
+                frm.Show();
+            }
         }
 
         private void btnOpenFolder_Click(object sender, EventArgs e)

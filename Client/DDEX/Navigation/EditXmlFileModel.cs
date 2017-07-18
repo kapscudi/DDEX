@@ -9,11 +9,18 @@ namespace DDEX.Navigation
 {
     public class EditXmlFileModel: BindableModel
     {
-        public string Name { get; set; }
-        public string FullName { get; set; }
-        public string Extension { get; set; }
-        public string DirectoryName { get; set; }
-        public DateTime LastWriteTime { get; set; }
+        public string Name { get { return Get<string>(); } set { Set(value); } }
+        public string FullName { get { return Get<string>(); } set { Set(value); } }
+        public string Extension { get { return Get<string>(); } set { Set(value); } }
+        public string DirectoryName { get { return Get<string>(); } set { Set(value); } }
+        public DateTime LastWriteTime { get { return Get<DateTime>(); } set { Set(value); } }
 
+        public override bool IsValid(out string message)
+        {
+            bool ret = true;
+            message = "";
+            
+            return ret;
+        }
     }
 }

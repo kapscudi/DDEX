@@ -16,6 +16,13 @@ namespace DDEX.Generation.ERN_382
         public ERN_382GenerationFormAudioAlbumMusicOnly()
         {
             InitializeComponent();
+            lblPath.Text = "C:\\temp\\file.xml";
+            Model = GetModelFromFile(lblPath.Text);            
+        }
+
+        public ERN_382GenerationFormAudioAlbumMusicOnly(AudioAlbumModel model) : this()
+        {
+            Model.CopyFromSource(model);
         }
 
         public AudioAlbumModel Model = new AudioAlbumModel();
@@ -304,39 +311,41 @@ namespace DDEX.Generation.ERN_382
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     lblPath.Text = dlg.FileName;
+                    
+                    var xmlObject = Binder.GetXmlObjectFromFile(dlg.FileName);
 
-                    var xmlObject = Binder.GetXmlObjectFromFile(lblPath.Text);
                     Model = (AudioAlbumModel) Binder.GetModelFromXmlObject(xmlObject);
+                    Model.FullFileName = dlg.FileName;
+
                     dgvSoundRecordingsAndReleases.ClearSelection();
                 }
             }
         }
-                
-        public void OnGenerateClicked(object sender, EventArgs e)
+
+        private AudioAlbumModel GetModelFromFile(string fileName)
         {
-            //base.OnGenerateClicked(sender, e);
-            rtbOutput.Text = "";
-            string msg = "";
-            bool isValid = Binder.IsModelValid(Model, out msg);
-            if (isValid)
+            AudioAlbumModel ret = null;
+
+            try
             {
-                Binder.WriteXmlObjectToFile(Binder.GetXmlObjectFromModel(Model), lblPath.Text);
+                ret = (AudioAlbumModel)Binder.GetModelFromXmlObject(Binder.GetXmlObjectFromFile(fileName));
             }
-            else
+            catch (Exception ex)
             {
-                rtbOutput.Text =  msg + "---\n" + rtbOutput.Text.ToString() + "\n";
+                MRMessageBox.Show(string.Format("Unable to read file {1}.\n{0}", ex.Message, fileName), MRMessageBox.eMessageBoxStyle.OK, MRMessageBox.eMessageBoxType.Error);
             }
 
-            var srd = new SoundRecordingDetailsByTerritory();
-            
+            return ret;
         }
-        
         private void ERN_382GenerationFormAudioAlbumMusicOnly_Load(object sender, EventArgs e)
         {
-            lblPath.Text = "C:\\temp\\file.xml";
-            Model = (AudioAlbumModel) Binder.GetModelFromXmlObject(Binder.GetXmlObjectFromFile(lblPath.Text));
+            AudioAlbumModel m = GetModelFromFile(Model.FullFileName);
+            if (m != null)
+            {
+                Model.CopyFromSource(m);
+                lblPath.Text = Model.FullFileName;
+            }
             InitBindings();
-
             dgvSoundRecordingsAndReleases.ClearSelection();
         }
 
@@ -432,6 +441,45 @@ namespace DDEX.Generation.ERN_382
             }
 
         }
+
+        private void Form_DialogResultClicked(object sender, DialogResultEventArgs e)
+        {
+            if (e.Result == DialogResult.OK)
+            {
+                string message = "";
+                string message2 = "";
+                if (Model.IsValid(out message) && IsXmlFileValid(out message2))
+                {
+                    Binder.WriteXmlObjectToFile(Binder.GetXmlObjectFromModel(Model), Model.FullFileName);
+                    DialogResult = DialogResult.OK;
+                    Close();
+                    Dispose();
+                }
+                else
+                {
+                    rtbOutput.Text = message2 + "---\n" + rtbOutput.Text.ToString() + "\n";
+                    if (MRMessageBox.Show(string.Format("Data not valid.\n{0}\n{1}\n\nDo you wish to save invalid xml file? ", message, message2), MRMessageBox.eMessageBoxStyle.YesNo, MRMessageBox.eMessageBoxType.Error, 300) == DialogResult.Yes)
+                    {
+                        Binder.WriteXmlObjectToFile(Binder.GetXmlObjectFromModel(Model), Model.FullFileName);
+                        DialogResult = DialogResult.Abort;
+                        Close();
+                        Dispose();
+                    }
+                }
+            }
+            else if (e.Result == DialogResult.Cancel)
+            {
+                DialogResult = DialogResult.Cancel;
+                Close();
+                Dispose();
+            }
+        }
+
+        private bool IsXmlFileValid(out string msg)
+        {
+            return Binder.IsModelValid(Model, out msg);
+        }
+
     }
 
     

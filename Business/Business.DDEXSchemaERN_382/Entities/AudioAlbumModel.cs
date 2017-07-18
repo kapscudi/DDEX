@@ -13,6 +13,7 @@ namespace Business.DDEXSchemaERN_382.Entities
         {
             MessageCreatedDateTime = DateTime.Now;
         }
+        public string FullFileName { get { return Get<string>(); } set { Set(value); } }
         public string EAN { get { return Get<string>(); } set { Set(value); } }
         public string MessageID { get { return Get<string>(); } set { Set(value); } }
         public string SenderPartyID { get { return Get<string>(); } set { Set(value); } }

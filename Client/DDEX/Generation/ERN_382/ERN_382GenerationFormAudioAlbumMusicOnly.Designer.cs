@@ -40,6 +40,8 @@
             this.tbFrontCoverImage = new Framework.UI.Controls.MRTitleBar();
             this.pnlTrackReleasesParent = new Framework.UI.Controls.MRPanel(this.components);
             this.dgvSoundRecordingsAndReleases = new System.Windows.Forms.DataGridView();
+            this.csEdit = new System.Windows.Forms.DataGridViewImageColumn();
+            this.csDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.csTracksOrdinal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csTracksISRC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.csTrackTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,8 +74,6 @@
             this.rtbOutput = new System.Windows.Forms.RichTextBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.csEdit = new System.Windows.Forms.DataGridViewImageColumn();
-            this.csDelete = new System.Windows.Forms.DataGridViewImageColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnlFrontCoverImageParent.SuspendLayout();
@@ -224,6 +224,31 @@
             this.dgvSoundRecordingsAndReleases.TabStop = false;
             this.dgvSoundRecordingsAndReleases.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSoundRecordingsAndReleases_CellClick);
             this.dgvSoundRecordingsAndReleases.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSoundRecordingsAndReleases_CellDoubleClick);
+            // 
+            // csEdit
+            // 
+            this.csEdit.FillWeight = 12.16545F;
+            this.csEdit.HeaderText = "";
+            this.csEdit.Image = global::DDEX.Properties.Resources.Edit;
+            this.csEdit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.csEdit.MinimumWidth = 20;
+            this.csEdit.Name = "csEdit";
+            this.csEdit.ReadOnly = true;
+            this.csEdit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csEdit.ToolTipText = "Edit selected record";
+            this.csEdit.Width = 20;
+            // 
+            // csDelete
+            // 
+            this.csDelete.FillWeight = 27.22915F;
+            this.csDelete.HeaderText = "";
+            this.csDelete.Image = global::DDEX.Properties.Resources.Delete;
+            this.csDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.csDelete.MinimumWidth = 20;
+            this.csDelete.Name = "csDelete";
+            this.csDelete.ReadOnly = true;
+            this.csDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.csDelete.Width = 20;
             // 
             // csTracksOrdinal
             // 
@@ -543,31 +568,6 @@
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewImageColumn2.Width = 20;
             // 
-            // csEdit
-            // 
-            this.csEdit.FillWeight = 12.16545F;
-            this.csEdit.HeaderText = "";
-            this.csEdit.Image = global::DDEX.Properties.Resources.Edit;
-            this.csEdit.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.csEdit.MinimumWidth = 20;
-            this.csEdit.Name = "csEdit";
-            this.csEdit.ReadOnly = true;
-            this.csEdit.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.csEdit.ToolTipText = "Edit selected record";
-            this.csEdit.Width = 20;
-            // 
-            // csDelete
-            // 
-            this.csDelete.FillWeight = 27.22915F;
-            this.csDelete.HeaderText = "";
-            this.csDelete.Image = global::DDEX.Properties.Resources.Delete;
-            this.csDelete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.csDelete.MinimumWidth = 20;
-            this.csDelete.Name = "csDelete";
-            this.csDelete.ReadOnly = true;
-            this.csDelete.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.csDelete.Width = 20;
-            // 
             // ERN_382GenerationFormAudioAlbumMusicOnly
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -577,6 +577,7 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ERN_382GenerationFormAudioAlbumMusicOnly";
             this.Text = "Release Edit";
+            this.DialogResultClicked += new Framework.UI.Forms.MREditForm.ButtonClickEventHandler(this.Form_DialogResultClicked);
             this.Load += new System.EventHandler(this.ERN_382GenerationFormAudioAlbumMusicOnly_Load);
             this.Controls.SetChildIndex(this.pnlData, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);

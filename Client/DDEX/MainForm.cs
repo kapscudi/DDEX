@@ -15,6 +15,7 @@ namespace DDEX
         public MainForm()
         {
             InitializeComponent();
+            Globals.MDIMainForm = this;
         }
 
         #region Properties

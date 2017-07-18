@@ -18,9 +18,17 @@ namespace Framework.UI.Forms
         }
         public MRMessageBox(string message, eMessageBoxStyle messageBoxStyle) : this()
         {
-            lblTitle.Text = message;
+            lblTitle.Text = SplitStringWithNewLines(message);
             MessageBoxStyle = messageBoxStyle;
         }
+
+        public MRMessageBox(string message, eMessageBoxStyle messageBoxStyle, int lineLength) : this(message, messageBoxStyle)
+        {
+            LineLength = lineLength;
+            lblTitle.Text = SplitStringWithNewLines(message);
+        }
+        [DefaultValue(DEFAULT_LINE_LENGTH)]
+        public int LineLength { get; set; } = DEFAULT_LINE_LENGTH;
         public enum eMessageBoxStyle
         {
             YesNo,
@@ -75,7 +83,6 @@ namespace Framework.UI.Forms
                 return ret;
             }
         }
-
         public string FormTitle
         {
             get
@@ -98,13 +105,25 @@ namespace Framework.UI.Forms
             pnlOk.Visible = messageBoxStyle == eMessageBoxStyle.OK;
         }
 
-
-        public static DialogResult Show(string message, eMessageBoxStyle style, eMessageBoxType type)
+        private string SplitStringWithNewLines(string s)
         {
-            using (var frm = new MRMessageBox(message, style) {  MessageBoxType = type })
+            string ret = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (i % LineLength == 0 && i != 0) ret += "\n";
+                ret += s[i];
+            }
+
+            return ret;
+        }
+        private const int DEFAULT_LINE_LENGTH = 300;
+        public static DialogResult Show(string message, eMessageBoxStyle style, eMessageBoxType type, int lineLength = DEFAULT_LINE_LENGTH)
+        {
+            using (var frm = new MRMessageBox(message, style, lineLength) {  MessageBoxType = type })
             {
                 return frm.ShowDialog();
             }
         }
+
     }
 }

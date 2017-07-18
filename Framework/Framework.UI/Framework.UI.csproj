@@ -49,6 +49,12 @@
     <Compile Include="Controls\MRButton.Designer.cs">
       <DependentUpon>MRButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MRCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\MRCheckBox.Designer.cs">
+      <DependentUpon>MRCheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MRGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>

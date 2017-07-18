@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,6 +37,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tsBtnXmlVersion = new System.Windows.Forms.ToolStripDropDownButton();
             this.tsBtnXmlVersionERN_382 = new System.Windows.Forms.ToolStripMenuItem();
+            this.filesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +57,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newToolStripMenuItem,
-            this.validatorToolStripMenuItem});
+            this.validatorToolStripMenuItem,
+            this.filesToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -68,27 +69,27 @@
             this.singleToolStripMenuItem,
             this.albumToolStripMenuItem});
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "Ne&w";
             // 
             // singleToolStripMenuItem
             // 
             this.singleToolStripMenuItem.Name = "singleToolStripMenuItem";
-            this.singleToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.singleToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.singleToolStripMenuItem.Text = "&Single";
             this.singleToolStripMenuItem.Click += new System.EventHandler(this.menuItem_Click);
             // 
             // albumToolStripMenuItem
             // 
             this.albumToolStripMenuItem.Name = "albumToolStripMenuItem";
-            this.albumToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.albumToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.albumToolStripMenuItem.Text = "&Album";
             this.albumToolStripMenuItem.Click += new System.EventHandler(this.menuItem_Click);
             // 
             // validatorToolStripMenuItem
             // 
             this.validatorToolStripMenuItem.Name = "validatorToolStripMenuItem";
-            this.validatorToolStripMenuItem.Size = new System.Drawing.Size(120, 22);
+            this.validatorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.validatorToolStripMenuItem.Text = "&Validator";
             this.validatorToolStripMenuItem.Click += new System.EventHandler(this.validatorToolStripMenuItem_Click);
             // 
@@ -108,7 +109,6 @@
             this.tsBtnXmlVersion.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tsBtnXmlVersion.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsBtnXmlVersionERN_382});
-            this.tsBtnXmlVersion.Image = ((System.Drawing.Image)(resources.GetObject("tsBtnXmlVersion.Image")));
             this.tsBtnXmlVersion.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsBtnXmlVersion.Name = "tsBtnXmlVersion";
             this.tsBtnXmlVersion.Size = new System.Drawing.Size(130, 20);
@@ -120,6 +120,13 @@
             this.tsBtnXmlVersionERN_382.Size = new System.Drawing.Size(119, 22);
             this.tsBtnXmlVersionERN_382.Text = "ERN_382";
             // 
+            // filesToolStripMenuItem
+            // 
+            this.filesToolStripMenuItem.Name = "filesToolStripMenuItem";
+            this.filesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.filesToolStripMenuItem.Text = "Files";
+            this.filesToolStripMenuItem.Click += new System.EventHandler(this.filesToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -127,7 +134,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -153,5 +160,6 @@
         private System.Windows.Forms.ToolStripMenuItem tsBtnXmlVersionERN_382;
         private System.Windows.Forms.ToolStripMenuItem albumToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem validatorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem filesToolStripMenuItem;
     }
 }

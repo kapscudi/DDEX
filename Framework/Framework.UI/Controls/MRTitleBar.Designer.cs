@@ -99,6 +99,7 @@
             this.btnExpand.Size = new System.Drawing.Size(23, 20);
             this.btnExpand.TabIndex = 1;
             this.btnExpand.UseVisualStyleBackColor = false;
+            this.btnExpand.Visible = false;
             this.btnExpand.Click += new System.EventHandler(this.btnExpand_Click);
             // 
             // MRTitleBar

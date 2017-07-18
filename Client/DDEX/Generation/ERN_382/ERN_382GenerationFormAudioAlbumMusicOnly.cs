@@ -11,7 +11,7 @@ using Framework.UI.Forms;
 
 namespace DDEX.Generation.ERN_382
 {
-    public partial class ERN_382GenerationFormAudioAlbumMusicOnly : GenerationForm
+    public partial class ERN_382GenerationFormAudioAlbumMusicOnly : MREditForm
     {
         public ERN_382GenerationFormAudioAlbumMusicOnly()
         {
@@ -312,9 +312,9 @@ namespace DDEX.Generation.ERN_382
             }
         }
                 
-        protected override void OnGenerateClicked(object sender, EventArgs e)
+        public void OnGenerateClicked(object sender, EventArgs e)
         {
-            base.OnGenerateClicked(sender, e);
+            //base.OnGenerateClicked(sender, e);
             rtbOutput.Text = "";
             string msg = "";
             bool isValid = Binder.IsModelValid(Model, out msg);

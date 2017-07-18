@@ -38,6 +38,7 @@ namespace DDEX
         private void MainForm_Load(object sender, EventArgs e)
         {
             menuItem_Click(albumToolStripMenuItem, new EventArgs());
+            filesToolStripMenuItem_Click(this, new EventArgs());
         }
 
         private void validatorToolStripMenuItem_Click(object sender, EventArgs e)
@@ -46,7 +47,13 @@ namespace DDEX
             frm.MdiParent = this;
             frm.Show();
         }
-        
+
+        private void filesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new Navigation.FilesForm();
+            frm.MdiParent = this;
+            frm.Show();
+        }
     }
 }
     /*

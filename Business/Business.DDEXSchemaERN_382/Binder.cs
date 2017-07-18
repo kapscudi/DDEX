@@ -182,7 +182,9 @@ namespace Business.DDEXSchemaERN_382
                     if (rel.ReferenceTitle.TitleText == null) rel.ReferenceTitle.TitleText = new TitleText();
                     rel.ReferenceTitle.TitleText.Value = track.Title;
                     if (rel.ReleaseDetailsByTerritory == null || rel.ReleaseDetailsByTerritory.Length == 0) rel.ReleaseDetailsByTerritory = new ReleaseDetailsByTerritory[1];
+                    if (rel.ReleaseDetailsByTerritory[0] == null) rel.ReleaseDetailsByTerritory[0] = new ReleaseDetailsByTerritory();
                     if (rel.ReleaseDetailsByTerritory[0].Genre == null || rel.ReleaseDetailsByTerritory[0].Genre.Length == 0) rel.ReleaseDetailsByTerritory[0].Genre = new Genre[1];
+                    if (rel.ReleaseDetailsByTerritory[0].Genre[0] == null) rel.ReleaseDetailsByTerritory[0].Genre[0] = new Genre();
                     if (rel.ReleaseDetailsByTerritory[0].Genre[0].GenreText == null) rel.ReleaseDetailsByTerritory[0].Genre[0].GenreText = new Description();
                     rel.ReleaseDetailsByTerritory[0].Genre[0].GenreText.Value = track.Genre;
                     if (rel.ReleaseDetailsByTerritory[0].Genre[0].SubGenre == null) rel.ReleaseDetailsByTerritory[0].Genre[0].SubGenre = new Description();

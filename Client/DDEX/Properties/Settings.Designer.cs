@@ -25,13 +25,13 @@ namespace DDEX.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp\\navigation.json")]
-        public string NavigationFileName {
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp")]
+        public string NavigationFolderPath {
             get {
-                return ((string)(this["NavigationFileName"]));
+                return ((string)(this["NavigationFolderPath"]));
             }
             set {
-                this["NavigationFileName"] = value;
+                this["NavigationFolderPath"] = value;
             }
         }
     }

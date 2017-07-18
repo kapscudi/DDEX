@@ -9,7 +9,11 @@ namespace DDEX.Navigation
 {
     public class EditXmlFileModel: BindableModel
     {
-        public string FileName { get; set; }
-        public bool IsValidXml { get; set; }
+        public string Name { get; set; }
+        public string FullName { get; set; }
+        public string Extension { get; set; }
+        public string DirectoryName { get; set; }
+        public DateTime LastWriteTime { get; set; }
+
     }
 }

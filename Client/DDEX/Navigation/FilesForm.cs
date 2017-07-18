@@ -27,9 +27,10 @@ namespace DDEX.Navigation
 
         private void FilesForm_Load(object sender, EventArgs e)
         {
-            lblPath.Text = Properties.Settings.Default.NavigationFileName;
-            Globals.SaveNavigation();
+            lblPath.Text = Properties.Settings.Default.NavigationFolderPath;
+            Model.FolderPath = Properties.Settings.Default.NavigationFolderPath; 
             Globals.LoadNavigation();
+
             InitBindings();
         }
         private void InitBindings()
@@ -62,14 +63,37 @@ namespace DDEX.Navigation
         }
         private void dgvFiles_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            EditXmlFileModel record = (EditXmlFileModel)dgvFiles.CurrentRow.DataBoundItem;
-            if (record != null)
+            //EditXmlFileModel record = (EditXmlFileModel)dgvFiles.CurrentRow.DataBoundItem;
+            //if (record != null)
+            //{
+            //    using (var frm = new FileForm((EditXmlFileModel)record.Copy()) { Editable = false })
+            //    {
+            //        frm.ShowDialog();
+            //    }
+            //}
+
+
+            // otvoriti ern album formu
+            // u model album dodati fullfilename
+            // u konstruktor forme dodati fullfilename
+        }
+
+        private void btnOpenFolder_Click(object sender, EventArgs e)
+        {
+            using(var b = new FolderBrowserDialog()
             {
-                using (var frm = new FileForm((EditXmlFileModel)record.Copy()) { Editable = false })
+                Description = "Select folder for xml files",
+                SelectedPath = Properties.Settings.Default.NavigationFolderPath,
+                ShowNewFolderButton = true
+            })
+            {
+                if (b.ShowDialog() == DialogResult.OK)
                 {
-                    frm.ShowDialog();
+                    Model.FolderPath = b.SelectedPath;
+                    Globals.LoadNavigation();                    
                 }
             }
         }
+
     }
 }
